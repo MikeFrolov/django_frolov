@@ -1,2 +1,2 @@
-# Hillel_Homeworks_Djungo
+# Hillel_Homeworks_Django
 Python Advanced course - Django
