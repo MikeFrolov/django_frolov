@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+
+def home(request):
+    return HttpResponse('<h1 align=center>Welcome to "Hillel Homework Django Project"</h1>'
+                        '<p align=center>by Michail Frolov</p>')
