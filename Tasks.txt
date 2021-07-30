@@ -1,1 +1,8 @@
 ### This file contains all the conditions for homeworks
+
+lesson-4 Django:
+
+- Installing django
+- Created a basic structure
+- Looked on the differences with the flask
+
