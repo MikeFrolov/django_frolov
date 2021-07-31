@@ -23,5 +23,6 @@ urlpatterns = [
     path('home/', views.home),
     path('generate-student/', views.generate_student),
     path('generate-students/', views.generate_students),
-    path('group/', views.groups)
+    path('groups/', views.groups),
+    path('teachers/', views.teachers),
 ]

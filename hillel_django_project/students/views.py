@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from faker import Faker
 
-from .models import Student, Group
+from .models import Student, Group, Teacher
 
 
 def count_valid(count):
@@ -62,4 +62,13 @@ def groups(request):
         [f"<p>Group name: {group.group_name}, Faculty name: {group.faculty_name} - "
          f"group consists of {group.nos} students;</p>" for group in groups_list]
         )
+    return HttpResponse(output)
+
+
+def teachers(request):
+    teachers_list = Teacher.objects.all()
+    output = ''.join(
+        [f"<p>Teacher {teacher.id}: {teacher.first_name} {teacher.last_name} - "
+         f"teaches: '{teacher.discipline}' course;</p>" for teacher in teachers_list]
+    )
     return HttpResponse(output)
