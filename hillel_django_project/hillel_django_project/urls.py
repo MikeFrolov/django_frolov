@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home),
     path('generate-student/', views.generate_student),
+    path('generate-students/', views.generate_students)
 ]

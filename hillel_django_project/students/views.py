@@ -4,6 +4,23 @@ from faker import Faker
 from .models import Student
 
 
+def count_valid(count):
+    if not count:
+        return HttpResponse('<p>Count not entered!</p>'
+                            '<p>No new student has been created in the database</p>')
+    if isinstance(count, str):
+        try:
+            int(count)
+        except ValueError:
+            return HttpResponse('<p>Count must be an integer!</p>'
+                                '<p>No new student has been created in the database</p>')
+        else:
+            if 1 > int(count) or int(count) > 100:
+                return HttpResponse('<p>Count must bу greater than 0 and no greater than 100</p>'
+                                    '<p>No new student has been created in the database</p>')
+        return int(count)
+
+
 def make_student():
     """Generate student and added him in DataBase"""
     fake = Faker()
@@ -18,8 +35,22 @@ def home(request) -> HttpResponse:
                         '<p align=center>by Michail Frolov</p>')
 
 
-def generate_student(request) -> str:
+def generate_student(request) -> HttpResponse:
     student = make_student()
     output = ''.join(f"<p>Created 1 student with id: {student.id}</p>"
                      f"<p>{student.first_name} {student.last_name}, {student.age};</p>")
     return HttpResponse(output)
+
+
+def generate_students(request) -> HttpResponse:
+    count = request.GET.get("count", "")  # get a count from url
+    new_students = []
+    if type(count_valid(count)) == int:
+        for i in range(int(count)):
+            student = make_student()
+            new_students.append(student)
+
+        output = [f"<p>Created new student: {x.id} {x.first_name} {x.last_name}, {x.age};</p>" for x in new_students]
+        return HttpResponse(output)
+    else:
+        return count_valid(count)
