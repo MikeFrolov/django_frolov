@@ -1,2 +1,5 @@
-# Hillel_Homeworks_Django
-Python Advanced course - Django
+# Django_Frolov
+
+### Hiilel Python Advanced course - Django
+
+by Michail Frolov
