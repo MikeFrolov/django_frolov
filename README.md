@@ -1,9 +1,10 @@
-# Hillel_Homeworks_Django
-Python Advanced course - Django
+# Django_Frolov
 
-1. Homework -4 
-(Read tasks in file 'Tasks.txt')
+### Hiilel Python Advanced course - Django
 
+by Michail Frolov
+
+---
 ### Use aplication with bash commands:
 
 1. $pip3 install -r requirements.txt
@@ -14,3 +15,7 @@ Python Advanced course - Django
 To stop the server, press "ctrl + c"
 
 The minimum acceptable version of Python is 3.9
+
+------
+
+Read the task in file 'Tasks.txt'
