@@ -4,24 +4,23 @@ from faker import Faker
 from .models import Student
 
 
-def count_valid(count):
+def count_valid(count) -> str:
     if not count:
-        return HttpResponse('<p>Count not entered!</p>'
-                            '<p>No new student has been created in the database</p>')
+        return '<p>Count not entered!</p>'
     if isinstance(count, str):
         try:
             int(count)
         except ValueError:
-            return HttpResponse('<p>Count must be an integer!</p>'
-                                '<p>No new student has been created in the database</p>')
+            return '<p>Count must be an integer!</p>'
         else:
             if 1 > int(count) or int(count) > 100:
-                return HttpResponse('<p>Count must bу greater than 0 and no greater than 100</p>'
-                                    '<p>No new student has been created in the database</p>')
-        return int(count)
+                return '<p>Count must bу greater than 0 and no greater than 100</p>'
+
+        return str(count)
 
 
 def make_student():
+    # Todo: Think about: What returned this function?
     """Generate student and added him in DataBase"""
     fake = Faker()
     student = Student.objects.create(first_name=fake.first_name(),
@@ -45,7 +44,7 @@ def generate_student(request) -> HttpResponse:
 def generate_students(request) -> HttpResponse:
     count = request.GET.get("count", "")  # get a count from url
     new_students = []
-    if type(count_valid(count)) == int:
+    if count_valid(count).isdigit():
         for i in range(int(count)):
             student = make_student()
             new_students.append(student)
@@ -53,4 +52,4 @@ def generate_students(request) -> HttpResponse:
         output = [f"<p>Created new student: {x.id} {x.first_name} {x.last_name}, {x.age};</p>" for x in new_students]
         return HttpResponse(output)
     else:
-        return count_valid(count)
+        return HttpResponse(count_valid(count))
