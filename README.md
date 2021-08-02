@@ -21,15 +21,14 @@ Homework - 4:
     3. use "127.0.0.1./admin/" address to manually create groups, students and teachers in the database
     4. use "127.0.0.1:8000/get_groups/" address to list all groups from the database
     5. use "127.0.0.1:8000/get_teachers/" address to list all teachers from the database
-    6. * use "127.0.0.1:8000/home/" address to visit the project home page
  
 Homework - 5:
 
     1. use bash command "flake8 Django_Frolov" to check the design of the code in the all project
     2. use bash command "python3 manage.py generate_teachers n" to  generate n random teachers into the database,
        where n = number of objects to be generated
-    3. use "127.0.0.1:8000/get_teachers/?" address with "id=int", "first_name=str", "last_name=str", "age=int",
-       "discipline=str" parameters, to filter teachers by parameter. 
+    3. use "127.0.0.1:8000/get_teachers/?" address with "id=int", "first_name=str", "last_name=str", "age=int"
+       parameters, to filter teachers by parameter. 
        Use & to combine 2 or more filtering parameters.
        Example: "127.0.0.1:8000/get_teachers/?first_name=Vitalii&age=30"
 
