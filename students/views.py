@@ -20,7 +20,6 @@ def count_valid(count) -> str:
 
 
 def make_student() -> object():
-    # Todo: Think about: What returned this function?
     """Generate student and added him in DataBase"""
     fake = Faker()
     student = Student.objects.create(first_name=fake.first_name(),
