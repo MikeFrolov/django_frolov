@@ -27,12 +27,17 @@ Homework - 5:
     1. use bash command "flake8 Django_Frolov" to check the design of the code in the all project
     2. use bash command "python3 manage.py generate_teachers n" to  generate n random teachers into the database,
        where n = number of objects to be generated
-    3. use "127.0.0.1:8000/get_teachers/?" address with "id=int", "first_name=str", "last_name=str", "age=int"
-       parameters, to filter teachers by parameter. 
+    3. use "127.0.0.1:8000/list_teachers/" or "127.0.0.1:8000/list students/" addresses to list all teachers
+       or stodents from database
+    3. use "127.0.0.1:8000/list_teachers/?" or "127.0.0.1:8000/list_students/?" addresses with "id=int",
+       "first_name=str", "last_name=str", "age=int" parameters, to list filtered teachers or students from database
+       by parameter. 
        Use & to combine 2 or more filtering parameters.
-       Example: "127.0.0.1:8000/get_teachers/?first_name=Vitalii&age=30"
+       * Example: "127.0.0.1:8000/get_teachers/?first_name=Vitalii&age=30"
 
 ---
 The minimum acceptable version of Python is 3.9
+
+---
 
 (Read tasks in file 'Tasks.txt')

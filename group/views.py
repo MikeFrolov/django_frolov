@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Group
 
 
-def groups(request):
+def list_groups(request):
     groups_list = Group.objects.all()
     output = ''.join(
         [f"<p>Group name: {group.group_name}, Faculty name: {group.faculty_name} - "
