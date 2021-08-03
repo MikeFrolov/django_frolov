@@ -73,6 +73,3 @@ def list_filtered_students(request):
             [f"<p>Student {student.id}: {student.first_name} {student.last_name}, {student.age} years old;</p>"
              for student in filtered_students])
         return HttpResponse(output)
-
-    # TODO: Think about how not to get an error if a filter field is entered, but its value is not entered
-

@@ -53,5 +53,3 @@ def list_filtered_teachers(request):
             [f"<p>Teacher {teacher.id}: {teacher.first_name} {teacher.last_name}, {teacher.age} years old;</p>"
              for teacher in filtered_teachers])
         return HttpResponse(output)
-
-    # TODO: Think about how not to get an error if a filter field is entered, but its value is not entered
