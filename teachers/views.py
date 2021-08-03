@@ -14,14 +14,14 @@ def make_teacher() -> object():
     return teacher
 
 
-def generate_student(request) -> HttpResponse:
+def generate_teacher(request) -> HttpResponse:
     teacher = make_teacher()
     output = ''.join(f"<p>Created 1 student with id: {teacher.id}</p>"
                      f"<p>{teacher.first_name} {teacher.last_name}, {teacher.age};</p>")
     return HttpResponse(output)
 
 
-def get_all_teachers(request):
+def list_all_teachers(request):
     """
     List all teachers from database
     :param request: None
@@ -35,7 +35,7 @@ def get_all_teachers(request):
     return HttpResponse(output)
 
 
-def get_filtered_teachers(request):
+def list_filtered_teachers(request):
     """
     List teachers with filtering functionality by fields age, first_name, last_name.
     :param request: id, first_name, last_name, age, discipline
@@ -45,7 +45,7 @@ def get_filtered_teachers(request):
     filter_parameters = {p: v for p, v in request.GET.items()}
 
     if not filter_parameters:  # If no filtering parameters are entered
-        return get_all_teachers(request)  # List all teachers from database
+        return list_all_teachers(request)  # List all teachers from database
     else:
         filtered_teachers = [obj for obj in Teacher.objects.filter(**filter_parameters)]
 

@@ -39,3 +39,40 @@ def generate_students(request) -> HttpResponse:
         return HttpResponse(output)
     else:
         return HttpResponse(count_validator.count_valid(count))
+
+
+def list_all_students(request):
+    """
+    List all students from database
+    :param request: None
+    :return: HttpResponse
+    """
+    students_list = Student.objects.all()
+    output = ''.join(
+        [f"<p>Student {student.id}: {student.first_name} {student.last_name}, {student.age} years old;</p>"
+         for student in students_list]
+    )
+    return HttpResponse(output)
+
+
+def list_filtered_students(request):
+    """
+    List students with filtering functionality by fields age, first_name, last_name.
+    :param request: id, first_name, last_name, age, discipline
+    :return: HttpResponse
+    """
+
+    filter_parameters = {p: v for p, v in request.GET.items()}
+
+    if not filter_parameters:  # If no filtering parameters are entered
+        return list_all_students(request)  # List all students from database
+    else:
+        filtered_students = [obj for obj in Student.objects.filter(**filter_parameters)]
+
+        output = ''.join(
+            [f"<p>Student {student.id}: {student.first_name} {student.last_name}, {student.age} years old;</p>"
+             for student in filtered_students])
+        return HttpResponse(output)
+
+    # TODO: Think about how not to get an error if a filter field is entered, but its value is not entered
+

@@ -16,17 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from group import views as group_views
+from group import views as groups_views
 
-from students import views as student_views
+from students import views as students_views
 
-from teachers import views as teacher_views
+from teachers import views as teachers_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', student_views.home),
-    path('generate-student/', student_views.generate_student),
-    path('generate-students/', student_views.generate_students),
-    path('get_groups/', group_views.groups),
-    path('get_teachers/', teacher_views.get_filtered_teachers),
+    path('home/', students_views.home),
+    path('generate-student/', students_views.generate_student),
+    path('generate-students/', students_views.generate_students),
+    path('list_students/', students_views.list_filtered_students),
+    path('list_groups/', groups_views.list_groups),
+    path('list_teachers/', teachers_views.list_filtered_teachers),
 ]
