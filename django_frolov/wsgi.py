@@ -1,5 +1,5 @@
 """
-WSGI config for Django_Frolov project.
+WSGI config for django_frolov project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Django_Frolov.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_frolov.settings')
 
 application = get_wsgi_application()
