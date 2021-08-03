@@ -1,8 +1,13 @@
 # Django_Frolov
-Python Advanced course - Django
 
+=======
 
-### Use application with bash commands:
+### Hiilel Python Advanced course - Django
+
+by Michail Frolov
+
+---
+### Use aplication with bash commands:
 
 1. $pip3 install -r requirements.txt
 2. $python3 manage.py migrate
@@ -23,6 +28,7 @@ Homework - 4:
     5. use "127.0.0.1:8000/get_teachers/" address to list all teachers from the database
  
 Homework - 5:
+
 
     1. use bash command "flake8 Django_Frolov" to check the design of the code in the all project
     2. use bash command "python3 manage.py generate_teachers n" to  generate n random teachers into the database,
