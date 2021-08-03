@@ -3,24 +3,10 @@ from faker import Faker
 
 from .models import Student
 
-
-def count_valid(count) -> str:
-    if not count:
-        return '<p>Count not entered!</p>'
-    if isinstance(count, str):
-        try:
-            int(count)
-        except ValueError:
-            return '<p>Count must be an integer!</p>'
-        else:
-            if 1 > int(count) or int(count) > 100:
-                return '<p>Count must bу greater than 0 and no greater than 100</p>'
-
-        return str(count)
+from my_libs import count_validator
 
 
-def make_student():
-    # Todo: Think about: What returned this function?
+def make_student() -> object():
     """Generate student and added him in DataBase"""
     fake = Faker()
     student = Student.objects.create(first_name=fake.first_name(),
@@ -44,7 +30,7 @@ def generate_student(request) -> HttpResponse:
 def generate_students(request) -> HttpResponse:
     count = request.GET.get("count", "")  # get a count from url
     new_students = []
-    if count_valid(count).isdigit():
+    if count_validator.count_valid(count).isdigit():
         for i in range(int(count)):
             student = make_student()
             new_students.append(student)
@@ -52,4 +38,38 @@ def generate_students(request) -> HttpResponse:
         output = [f"<p>Created new student: {x.id} {x.first_name} {x.last_name}, {x.age};</p>" for x in new_students]
         return HttpResponse(output)
     else:
-        return HttpResponse(count_valid(count))
+        return HttpResponse(count_validator.count_valid(count))
+
+
+def list_all_students(request):
+    """
+    List all students from database
+    :param request: None
+    :return: HttpResponse
+    """
+    students_list = Student.objects.all()
+    output = ''.join(
+        [f"<p>Student {student.id}: {student.first_name} {student.last_name}, {student.age} years old;</p>"
+         for student in students_list]
+    )
+    return HttpResponse(output)
+
+
+def list_filtered_students(request):
+    """
+    List students with filtering functionality by fields age, first_name, last_name.
+    :param request: id, first_name, last_name, age, discipline
+    :return: HttpResponse
+    """
+
+    filter_parameters = {p: v for p, v in request.GET.items()}
+
+    if not filter_parameters:  # If no filtering parameters are entered
+        return list_all_students(request)  # List all students from database
+    else:
+        filtered_students = [obj for obj in Student.objects.filter(**filter_parameters)]
+
+        output = ''.join(
+            [f"<p>Student {student.id}: {student.first_name} {student.last_name}, {student.age} years old;</p>"
+             for student in filtered_students])
+        return HttpResponse(output)

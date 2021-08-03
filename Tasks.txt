@@ -1,6 +1,6 @@
 ### This file contains all the conditions for homeworks
 
-lesson-4 Django:
+lesson-4 Django
 
 Создать Пул Реквест
 
@@ -16,3 +16,18 @@ Bonus:
 1. Вывести все группы
 2. Вывести всех учителей
 
+------------------------------------------------------------------------------------------------------
+
+Lesson-5 Django queryset, flake8
+
+Результат: линк на пул реквест
+
+1. установить flake8 и модули (flake8, flake8-import-order, flake8-builtins, flake8-print).
+    Почистить код (flake8 ./src)
+
+2. Написать команду которая будет генерировать 100 случайных учителей (python manage.py generate_teachers)
+    (https://docs.djangoproject.com/en/2.2/howto/custom-management-commands/)
+    добавить параметр который регилирует количество созд. учителей. (по умл. 100)
+    (python manage.py generate_teachers 50)
+
+3. Вывести список учителей с возможностью фильтрации по полям age, first_name, last_name.
