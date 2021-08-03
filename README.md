@@ -25,7 +25,6 @@ Homework - 4:
     4. use "127.0.0.1:8000/get_groups/" address to list all groups from the database
     5. use "127.0.0.1:8000/get_teachers/" address to list all teachers from the database
 
----
 
 The minimum acceptable version of Python is 3.9
 
