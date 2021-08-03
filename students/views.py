@@ -53,3 +53,12 @@ def generate_students(request) -> HttpResponse:
         return HttpResponse(output)
     else:
         return HttpResponse(count_valid(count))
+
+
+def students_list(request):
+    all_students = Student.objects.all()
+    output = ''.join(
+        [f"<p>Student {student.id}: {student.first_name} {student.last_name}, {student.age} years old;</p>"
+         for student in all_students]
+        )
+    return HttpResponse(output)
