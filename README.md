@@ -14,6 +14,7 @@ by Michail Frolov
 
 To stop the server, press "ctrl + c"
 
+
 ---
 
 Homework - 4:
@@ -24,7 +25,7 @@ Homework - 4:
     3. use "127.0.0.1./admin/" address to manually create groups, students and teachers in the database
     4. use "127.0.0.1:8000/get_groups/" address to list all groups from the database
     5. use "127.0.0.1:8000/get_teachers/" address to list all teachers from the database
-
+ 
 
 The minimum acceptable version of Python is 3.9
 
