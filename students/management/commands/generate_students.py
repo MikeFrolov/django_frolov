@@ -6,7 +6,6 @@ from students.models import Student
 
 
 class Command(BaseCommand):
-    help = 'Generates random students base on input amount'
 
     def add_arguments(self, parser):
         parser.add_argument('number_of_students', nargs='+', type=int, default=100)

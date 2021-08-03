@@ -6,7 +6,6 @@ from teachers.models import Teacher
 
 
 class Command(BaseCommand):
-    help = 'Generates random teachers base on input amount'
 
     def add_arguments(self, parser):
         parser.add_argument('number_of_teachers', nargs='+', type=int, default=100)
