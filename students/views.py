@@ -1,11 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+
 from faker import Faker
 
-from .models import Student
-from .forms import StudentForm
-
 from my_libs import count_validator
+
+from .forms import StudentForm
+from .models import Student
 
 
 def make_student() -> object():

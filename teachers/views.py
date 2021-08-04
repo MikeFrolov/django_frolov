@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 
-from .models import Teacher
-
 from faker import Faker
+
+from .models import Teacher
 
 
 def make_teacher() -> object():
