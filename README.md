@@ -29,7 +29,6 @@ Homework - 4:
  
 Homework - 5:
 
-
     1. use bash command "flake8 django_frolov" to check the design of the code in the all project
     2. use bash command "python3 manage.py generate_teachers n" to  generate n random teachers into the database,
        where n = number of objects to be generated
