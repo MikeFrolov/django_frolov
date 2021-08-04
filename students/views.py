@@ -5,7 +5,7 @@ from faker import Faker
 
 from my_libs import count_validator
 
-from .forms import StudentForm
+from .forms import StudentFormFormModel
 from .models import Student
 
 
@@ -22,7 +22,7 @@ def create_student_form(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data form the request:
-        form = StudentForm(request.POST)
+        form = StudentFormFormModel(request.POST)
         # check form it's valid:
         if form.is_valid():
             Student.objects.create(**form.cleaned_data)
@@ -33,9 +33,9 @@ def create_student_form(request):
 
     # if this is a GET request or (any other method) we'll create a blank form
     else:
-        form = StudentForm()
+        form = StudentFormFormModel()
 
-    return render(request, 'student.html', {'form': form})
+    return render(request, 'teacher.html', {'form': form})
 
 
 def home(request) -> HttpResponse:

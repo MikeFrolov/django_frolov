@@ -1,12 +1,14 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 from faker import Faker
 
+from .forms import TeacherForm
 from .models import Teacher
 
 
 def make_teacher() -> object():
-    """Generate student and added him in DataBase"""
+    """Generate teacher and added him in DataBase"""
     fake = Faker()
     teacher = Teacher.objects.create(first_name=fake.first_name(),
                                      last_name=fake.last_name(),
@@ -14,9 +16,29 @@ def make_teacher() -> object():
     return teacher
 
 
+def create_teacher_form(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data form the request:
+        form = TeacherForm(request.POST)
+        # check form it's valid:
+        if form.is_valid():
+            Teacher.objects.create(**form.cleaned_data)
+            teacher = Teacher.objects.last()
+
+            return HttpResponse(''.join(f"<p>Created 1 teacher with id: {teacher.id}</p>"
+                                f"<p>{teacher.first_name} {teacher.last_name}, {teacher.age};</p>"))
+
+    # if this is a GET request or (any other method) we'll create a blank form
+    else:
+        form = TeacherForm()
+
+    return render(request, 'teacher.html', {'form': form})
+
+
 def generate_teacher(request) -> HttpResponse:
     teacher = make_teacher()
-    output = ''.join(f"<p>Created 1 student with id: {teacher.id}</p>"
+    output = ''.join(f"<p>Created 1 teacher with id: {teacher.id}</p>"
                      f"<p>{teacher.first_name} {teacher.last_name}, {teacher.age};</p>")
     return HttpResponse(output)
 
