@@ -28,6 +28,7 @@ urlpatterns = [
     path('generate-student/', students_views.generate_student),
     path('generate-students/', students_views.generate_students),
     path('create_student_form/', students_views.create_student_form),
+    path('create_group_form/', groups_views.create_group_form),
     path('create_teacher_form/', teachers_views.create_teacher_form),
     path('list_students/', students_views.list_filtered_students),
     path('list_groups/', groups_views.list_groups),
