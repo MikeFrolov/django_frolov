@@ -24,12 +24,11 @@ def create_student_form(request):
         form = StudentForm(request.POST)
         # check form it's valid:
         if form.is_valid():
-            student = Student.objects.create(**form.changed_data)
-            output = ''.join(f"<p>Created 1 student with id: {student.id}</p>"
-                             f"<p>{student.first_name} {student.last_name}, {student.age};</p>")
-            return HttpResponse(output)
+            Student.objects.create(**form.cleaned_data)
+            return HttpResponse('Student creation was successful!')
     # if this is a GET request or (any other method) we'll create a blank form
-    form = StudentForm()
+    else:
+        form = StudentForm()
 
     return render(request, 'student.html', {'form': form})
 
