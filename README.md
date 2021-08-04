@@ -42,6 +42,14 @@ Homework - 5:
        * Example: "127.0.0.1:8000/get_teachers/?first_name=Vitalii&age=30"
 
 ---
+Homework - 6:
+
+
+    1. "127.0.0.1:8000/create_student_form/" address to create new student with use html form
+    2. "127.0.0.1:8000/create_teacher_form/" address to create new teacher with use html form
+    3. "127.0.0.1:8000/create_group_form/" address to create new group with use html form
+
+---
 The minimum acceptable version of Python is 3.9
 
 ---
