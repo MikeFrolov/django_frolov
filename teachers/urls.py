@@ -4,6 +4,6 @@ from . import views
 
 
 urlpatterns = [
-    path('create_teacher_form/', views.create_teacher_form),
-    path('list_teachers/', views.list_filtered_teachers),
+    path('create_teacher_form/', views.create_teacher_form, name='create-teacher-form'),
+    path('list_teachers/', views.list_filtered_teachers, name='list-filtered-teachers'),
 ]
