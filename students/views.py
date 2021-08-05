@@ -38,11 +38,6 @@ def create_student_form(request):
     return render(request, 'student.html', {'form': form})
 
 
-def home(request) -> HttpResponse:
-    return HttpResponse('<h1 align=center>Welcome to "Hillel Homework Django Project"</h1>'
-                        '<p align=center>by Michail Frolov</p>')
-
-
 def generate_student(request) -> HttpResponse:
     student = make_student()
     output = ''.join(f"<p>Created 1 student with id: {student.id}</p>"
