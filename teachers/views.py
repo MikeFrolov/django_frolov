@@ -33,7 +33,7 @@ def create_teacher_form(request):
     else:
         form = TeacherForm()
 
-    return render(request, 'teacher.html', {'form': form})
+    return render(request, 'create_teacher_form.html', {'form': form})
 
 
 def generate_teacher(request) -> HttpResponse:

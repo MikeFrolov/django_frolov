@@ -35,7 +35,7 @@ def create_student_form(request):
     else:
         form = StudentFormFormModel()
 
-    return render(request, 'student.html', {'form': form})
+    return render(request, 'create_student_form.html', {'form': form})
 
 
 def generate_student(request) -> HttpResponse:
