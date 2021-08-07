@@ -18,14 +18,14 @@ import debug_toolbar
 from django.contrib import admin
 from django.urls import include, path
 
-from . import views
+from .views import home
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', views.home, name='home'),
-    path('students/', include('students.urls')),
-    path('group/', include('group.urls')),
-    path('teachers', include('teachers.urls')),
+    path('home/', home, name='home'),
+    path('', include('students.urls')),
+    path('', include('group.urls')),
+    path('', include('teachers.urls')),
     path('__debug__/', include(debug_toolbar.urls))
 ]

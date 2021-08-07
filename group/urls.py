@@ -1,9 +1,12 @@
 from django.urls import path
 
-from . import views
+from .views import (
+    create_group_form,
+    list_groups,
+)
 
 
 urlpatterns = [
-    path('create_group_form/', views.create_group_form, name='create-group-form'),
-    path('list_groups/', views.list_groups, name='list-groups'),
+    path('create_group_form/', create_group_form, name='create-group-form'),
+    path('list_groups/', list_groups, name='list-groups'),
 ]
