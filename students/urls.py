@@ -4,6 +4,7 @@ from .views import (
     create_student_form,
     generate_student,
     generate_students,
+    list_all_students,
     list_filtered_students
 )
 

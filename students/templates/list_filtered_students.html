@@ -2,7 +2,7 @@
     {% block head %}
     {% endblock %}
     {% block content %}
-        <h1>List students</h1>
+        <h1>List filtered students</h1>
         <p></p>
         <ul>
             {% for student in students %}
@@ -12,11 +12,4 @@
             </li>
             {% endfor %}
         </ul>
-            <p></p>
-            <p>*</p>
-            <p>Use "127.0.0.1:8000/list_students/?" addresses with: "id=int", "first_name=str", "last_name=str",
-                "age=int" parameters, to list filtered students from database by parameter.</p>
-            <p>Use & to combine 2 or more filtering parameters.</p>
-            </h5>
-
     {% endblock %}

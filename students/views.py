@@ -63,19 +63,15 @@ def list_all_students(request):
     """
     List all students from database
     :param request: None
-    :return: HttpResponse
+    :return: html
     """
     students_list = Student.objects.all()
-    output = ''.join(
-        [f"<p>Student {student.id}: {student.first_name} {student.last_name}, {student.age} years old;</p>"
-         for student in students_list]
-    )
-    return HttpResponse(output)
+    return render(request, 'list_students.html', {'students': students_list})
 
 
 def list_filtered_students(request):
     """
-    List students with filtering functionality by fields age, first_name, last_name.
+    List students with filtering functionality by fields: id, age, first_name, last_name.
     :param request: id, first_name, last_name, age, discipline
     :return: HttpResponse
     """
@@ -85,9 +81,6 @@ def list_filtered_students(request):
     if not filter_parameters:  # If no filtering parameters are entered
         return list_all_students(request)  # List all students from database
     else:
-        filtered_students = [obj for obj in Student.objects.filter(**filter_parameters)]
+        list_students = [obj for obj in Student.objects.filter(**filter_parameters)]
+        return render(request, 'list_filtered_students.html', {'students': list_students})
 
-        output = ''.join(
-            [f"<p>Student {student.id}: {student.first_name} {student.last_name}, {student.age} years old;</p>"
-             for student in filtered_students])
-        return HttpResponse(output)
