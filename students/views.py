@@ -77,4 +77,4 @@ def edit_student_form(request, student_id):
         student = Student.objects.filter(id=student_id).first()
         form = StudentFormFormModel(instance=student)
 
-    return render(request, 'student_edit_form.html', {'form': form, 'student_id': student_id})
+    return render(request, 'edit_student_form.html', {'form': form, 'student_id': student_id})
