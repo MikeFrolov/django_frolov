@@ -1,17 +1,23 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="en">
     <head>
         {% block head %}
+            <title>Hillel Django Project</title>
             <!-- Required meta tags -->
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <!-- Bootstrap CSS -->
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
-            <title>Hillel Django Project by Michail Frolov</title>
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+            <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         {% endblock %}
     </head>
     <body>
-        <div id="content">{% block content %}{% endblock %}</div>
+            <h1 align="center"><a href="/">Django Project by Michail Frolov</a></h1>
+            {% block content %}
+            {% endblock %}
+            {% block footer %}
+            {% endblock %}
+        </div>
     </body>
 </html>
