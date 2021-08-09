@@ -10,6 +10,7 @@
                     Student id: {{ student.id|safe }}. {{ student.first_name|safe }} {{ student.last_name|safe }},
                     {{ student.age|safe }} years old
                     <a href="{% url 'edit-student-form' student.id %}">Edit</a>
+                    <a href="{% url 'delete-student' student.id %}">Delete</a>
                 </li>
             {% endfor %}
         </ul>

@@ -78,3 +78,9 @@ def edit_student_form(request, student_id):
         form = StudentFormFormModel(instance=student)
 
     return render(request, 'edit_student_form.html', {'form': form, 'student_id': student_id})
+
+
+def delete_student(request, student_id):
+    student = Student.objects.filter(id=student_id)
+    student.delete()
+    return HttpResponseRedirect(reverse('list-filtered-students'))
