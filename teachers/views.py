@@ -4,6 +4,9 @@ from django.shortcuts import render
 from faker import Faker
 
 from .forms import TeacherForm
+
+from faker import Faker
+
 from .models import Teacher
 
 
