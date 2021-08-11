@@ -1,9 +1,10 @@
 from django.http import HttpResponse
+
 from faker import Faker
 
-from .models import Student
-
 from my_libs import count_validator
+
+from .models import Student
 
 
 def make_student() -> object():
