@@ -1,5 +1,4 @@
 from django.http import HttpResponse, HttpResponseRedirect
-
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -8,7 +7,6 @@ from faker import Faker
 from my_libs import count_validator
 
 from .forms import StudentFormFormModel
-
 from .models import Student
 
 
