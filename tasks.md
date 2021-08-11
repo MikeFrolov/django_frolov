@@ -43,3 +43,13 @@ Lesson-6 Forms in Django
     3. Создать форму добавления Group
 
     https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
+
+---
+
+Lesson-7 Routing pages. reverse. Editing form in Django
+
+    1. Использовать везде reverse OR {% url %}. В каждом app должен быть свой модуль urls.py
+    2. На страничке списка студентов добавить кнопки которые позволят редактировать и удалять студентов.
+        После редирект на список.
+    3. Полный роутинг для teachers. Список, редактирование, добавление, delete.
+    4. Вывести красиво teachers и groups в django admin
