@@ -2,11 +2,11 @@ from django.urls import path
 
 from .views import (
     create_student_form,
+    delete_student,
     edit_student_form,
     generate_student,
     generate_students,
     list_filtered_students,
-    delete_student,
 )
 
 

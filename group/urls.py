@@ -2,8 +2,8 @@ from django.urls import path
 
 from .views import (
     create_group_form,
-    edit_group_form,
     delete_group,
+    edit_group_form,
     list_groups,
 )
 

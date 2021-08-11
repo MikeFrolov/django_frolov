@@ -20,7 +20,6 @@ def create_group_form(request):
         # check form it's valid:
         if form.is_valid():
             Group.objects.create(**form.cleaned_data)
-            group = Group.objects.last()
 
             return HttpResponseRedirect(reverse('list-groups'))
     else:

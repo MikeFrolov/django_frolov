@@ -14,4 +14,3 @@ class TeacherFormFormModel(forms.ModelForm):
     class Meta:
         model = Teacher
         fields = ['first_name', 'last_name', 'age']
-

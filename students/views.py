@@ -32,8 +32,7 @@ def make_student():
 
 
 def generate_student(request):
-    student = make_student()
-    list_students = Student.objects.all()
+    make_student()
     return HttpResponseRedirect(reverse('list-filtered-students'))
 
 
