@@ -2,12 +2,12 @@
     {% block head %}
     {% endblock %}
     {% block content %}
-        <h2>Teacher creation form</h2>
-
-        <form action="/create_teacher_form/" method="post">
-            {% csrf_token%}
+        <h2>Group edit form</h2>
+        <br>
+        <form action="{% url 'edit-group-form' group_id %}" method="post">
+            {% csrf_token %}
             <table>
-                {{form.as_table }}
+                {{ form.as_table }}
             </table>
             <input type="submit" value="Submit">
         </form>

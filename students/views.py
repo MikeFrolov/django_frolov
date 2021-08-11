@@ -16,10 +16,10 @@ def list_filtered_students(request):
     students_list = Student.objects.all()
 
     if not filter_parameters:  # If no filtering parameters are entered
-        return render(request, 'list_teachers.html', {'students': students_list})  # List all students from database
+        return render(request, 'list_students.html', {'students': students_list})  # List all students from database
     else:
         list_students = [obj for obj in Student.objects.filter(**filter_parameters)]
-        return render(request, 'list_filtered_teachers.html', {'students': list_students})
+        return render(request, 'list_filtered_students.html', {'students': list_students})
 
 
 def make_student():
@@ -74,7 +74,7 @@ def edit_student_form(request, student_id):
         student = Student.objects.filter(id=student_id).first()
         form = StudentFormFormModel(instance=student)
 
-    return render(request, 'edit_teacher_form.html', {'form': form, 'student_id': student_id})
+    return render(request, 'edit_student_form.html', {'form': form, 'student_id': student_id})
 
 
 def delete_student(request, student_id):
