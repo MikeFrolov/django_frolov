@@ -29,7 +29,9 @@ Homework - 4:
  
 Homework - 5:
 
-    1. use bash command "flake8 django_frolov" to check the design of the code in the all project
+
+    1. use bash command "flake8" to check the design of the code in the all project
+
     2. use bash command "python3 manage.py generate_teachers n" to  generate n random teachers into the database,
        where n = number of objects to be generated
     3. use "127.0.0.1:8000/list_teachers/" or "127.0.0.1:8000/list students/" addresses to list all teachers
@@ -39,6 +41,14 @@ Homework - 5:
        by parameter. 
        Use & to combine 2 or more filtering parameters.
        * Example: "127.0.0.1:8000/get_teachers/?first_name=Vitalii&age=30"
+
+---
+Homework - 6:
+
+
+    1. use "127.0.0.1:8000/create_student_form/" address to create new student with use html form
+    2. use "127.0.0.1:8000/create_teacher_form/" address to create new teacher with use html form
+    3. use "127.0.0.1:8000/create_group_form/" address to create new group with use html form
 
 ---
 The minimum acceptable version of Python is 3.9

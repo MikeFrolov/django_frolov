@@ -1,8 +1,12 @@
 from django.http import HttpResponse
 
+from django.shortcuts import render
+
 from faker import Faker
 
 from my_libs import count_validator
+
+from .forms import StudentFormFormModel
 
 from .models import Student
 
@@ -14,6 +18,26 @@ def make_student() -> object():
                                      last_name=fake.last_name(),
                                      age=fake.random_int(16, 45))
     return student
+
+
+def create_student_form(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data form the request:
+        form = StudentFormFormModel(request.POST)
+        # check form it's valid:
+        if form.is_valid():
+            Student.objects.create(**form.cleaned_data)
+            student = Student.objects.last()
+
+            return HttpResponse(''.join(f"<p>Created 1 student with id: {student.id}</p>"
+                                f"<p>{student.first_name} {student.last_name}, {student.age};</p>"))
+
+    # if this is a GET request or (any other method) we'll create a blank form
+    else:
+        form = StudentFormFormModel()
+
+    return render(request, 'student.html', {'form': form})
 
 
 def home(request) -> HttpResponse:
