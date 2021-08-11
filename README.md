@@ -53,12 +53,13 @@ Homework - 6:
 Homework - 7:
 
 
-    1. use "127.0.0.1:8000/list_students/" address to list all students,
+    1. use "127.0.0.1:8000/list_objects/" address to list all objects. (objects - name of the 
+        required class (students, teachers ...))
         - press 'edit' to edit object,
         - press 'delete' to delete object.
             *After creating, editing or deleting any object, the form will redirect to the page, 
             where the full list of objects of this class will be displayed.
-    2. use "127.0.0.1:8000/admin/" address ещ go to the admin panel page with updated functionality:
+    2. use "127.0.0.1:8000/admin/" address to go to the admin panel page with updated functionality:
         - all objects are displayed as a table,
         - added filtering by fields,
         - added search field for two main object fields, using (__startswith)
