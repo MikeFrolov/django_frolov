@@ -1,23 +1,49 @@
-from django.http import HttpResponse
-
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
 from faker import Faker
 
 from my_libs import count_validator
 
 from .forms import StudentFormFormModel
-
 from .models import Student
 
 
-def make_student() -> object():
+def list_filtered_students(request):
+
+    filter_parameters = {p: v for p, v in request.GET.items()}
+    students_list = Student.objects.all()
+
+    if not filter_parameters:  # If no filtering parameters are entered
+        return render(request, 'list_students.html', {'students': students_list})  # List all students from database
+    else:
+        list_students = [obj for obj in Student.objects.filter(**filter_parameters)]
+        return render(request, 'list_filtered_students.html', {'students': list_students})
+
+
+def make_student():
     """Generate student and added him in DataBase"""
     fake = Faker()
     student = Student.objects.create(first_name=fake.first_name(),
                                      last_name=fake.last_name(),
                                      age=fake.random_int(16, 45))
     return student
+
+
+def generate_student(request):
+    make_student()
+    return HttpResponseRedirect(reverse('list-filtered-students'))
+
+
+def generate_students(request, student_number=100):
+    count = request.GET.get("count", "")  # get a count from url
+    if count_validator.count_valid(count).isdigit():
+        for i in range(int(count)):
+            make_student()
+        return HttpResponseRedirect(reverse('list-filtered-students'))
+    else:
+        return HttpResponse(count_validator.count_valid(count))
 
 
 def create_student_form(request):
@@ -28,73 +54,29 @@ def create_student_form(request):
         # check form it's valid:
         if form.is_valid():
             Student.objects.create(**form.cleaned_data)
-            student = Student.objects.last()
-
-            return HttpResponse(''.join(f"<p>Created 1 student with id: {student.id}</p>"
-                                f"<p>{student.first_name} {student.last_name}, {student.age};</p>"))
+        return HttpResponseRedirect(reverse('list-filtered-students'))
 
     # if this is a GET request or (any other method) we'll create a blank form
     else:
         form = StudentFormFormModel()
 
-    return render(request, 'student.html', {'form': form})
+    return render(request, 'create_student_form.html', {'form': form})
 
 
-def home(request) -> HttpResponse:
-    return HttpResponse('<h1 align=center>Welcome to "Hillel Homework Django Project"</h1>'
-                        '<p align=center>by Michail Frolov</p>')
-
-
-def generate_student(request) -> HttpResponse:
-    student = make_student()
-    output = ''.join(f"<p>Created 1 student with id: {student.id}</p>"
-                     f"<p>{student.first_name} {student.last_name}, {student.age};</p>")
-    return HttpResponse(output)
-
-
-def generate_students(request) -> HttpResponse:
-    count = request.GET.get("count", "")  # get a count from url
-    new_students = []
-    if count_validator.count_valid(count).isdigit():
-        for i in range(int(count)):
-            student = make_student()
-            new_students.append(student)
-
-        output = [f"<p>Created new student: {x.id} {x.first_name} {x.last_name}, {x.age};</p>" for x in new_students]
-        return HttpResponse(output)
+def edit_student_form(request, student_id):
+    if request.method == 'POST':
+        form = StudentFormFormModel(request.POST)
+        if form.is_valid():
+            Student.objects.update_or_create(defaults=form.cleaned_data, id=student_id)
+            return HttpResponseRedirect(reverse('list-filtered-students'))
     else:
-        return HttpResponse(count_validator.count_valid(count))
+        student = Student.objects.filter(id=student_id).first()
+        form = StudentFormFormModel(instance=student)
+
+    return render(request, 'edit_student_form.html', {'form': form, 'student_id': student_id})
 
 
-def list_all_students(request):
-    """
-    List all students from database
-    :param request: None
-    :return: HttpResponse
-    """
-    students_list = Student.objects.all()
-    output = ''.join(
-        [f"<p>Student {student.id}: {student.first_name} {student.last_name}, {student.age} years old;</p>"
-         for student in students_list]
-    )
-    return HttpResponse(output)
-
-
-def list_filtered_students(request):
-    """
-    List students with filtering functionality by fields age, first_name, last_name.
-    :param request: id, first_name, last_name, age, discipline
-    :return: HttpResponse
-    """
-
-    filter_parameters = {p: v for p, v in request.GET.items()}
-
-    if not filter_parameters:  # If no filtering parameters are entered
-        return list_all_students(request)  # List all students from database
-    else:
-        filtered_students = [obj for obj in Student.objects.filter(**filter_parameters)]
-
-        output = ''.join(
-            [f"<p>Student {student.id}: {student.first_name} {student.last_name}, {student.age} years old;</p>"
-             for student in filtered_students])
-        return HttpResponse(output)
+def delete_student(request, student_id):
+    student = Student.objects.filter(id=student_id)
+    student.delete()
+    return HttpResponseRedirect(reverse('list-filtered-students'))

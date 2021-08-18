@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+    {% block head %}
+    {% endblock %}
+    {% block content %}
+        <h2>List filtered students</h2>
+        <p></p>
+        <ul>
+            {% for student in students %}
+            <li>
+                Student id: {{ student.id|safe }}. {{ student.first_name|safe }} {{ student.last_name|safe }},
+                {{ student.age|safe }} years old
+            </li>
+            {% endfor %}
+        </ul>
+    {% endblock %}

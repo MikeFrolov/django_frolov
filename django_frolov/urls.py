@@ -18,22 +18,14 @@ import debug_toolbar
 from django.contrib import admin
 from django.urls import include, path
 
-from group import views as groups_views
+from .views import home
 
-from students import views as students_views
-
-from teachers import views as teachers_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', students_views.home),
-    path('generate-student/', students_views.generate_student),
-    path('generate-students/', students_views.generate_students),
-    path('create_student_form/', students_views.create_student_form),
-    path('create_group_form/', groups_views.create_group_form),
-    path('create_teacher_form/', teachers_views.create_teacher_form),
-    path('list_students/', students_views.list_filtered_students),
-    path('list_groups/', groups_views.list_groups),
-    path('list_teachers/', teachers_views.list_filtered_teachers),
+    path('home/', home, name='home'),
+    path('', include('students.urls')),
+    path('', include('group.urls')),
+    path('', include('teachers.urls')),
     path('__debug__/', include(debug_toolbar.urls))
 ]
