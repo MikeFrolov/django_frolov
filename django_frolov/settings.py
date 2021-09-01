@@ -42,11 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'phonenumber_field',
     'django.contrib.staticfiles',
     'students',
     'teachers',
     'group',
     'debug_toolbar',
+
 ]
 
 MIDDLEWARE = [

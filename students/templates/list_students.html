@@ -8,7 +8,7 @@
             {% for student in students %}
                 <li>
                     Student id: {{ student.id|safe }}. {{ student.first_name|safe }} {{ student.last_name|safe }},
-                    {{ student.age|safe }} years old
+                    {{ student.age|safe }} years old, phone: {{student.phone|safe}}
                     <a href="{% url 'edit-student-form' student.id %}">Edit</a>
                     <a href="{% url 'delete-student' student.id %}">Delete</a>
                 </li>
@@ -16,6 +16,7 @@
         </ul>
     {% endblock %}
     {% block footer %}
+            <br>
             <p>Use "127.0.0.1:8000/list_students/?" addresses with: "id=int", "first_name=str", "last_name=str",
                 "age=int" parameters, to list filtered students from database by parameter.</p>
             <p>Use & to combine 2 or more filtering parameters.</p>
