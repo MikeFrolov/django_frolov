@@ -8,7 +8,7 @@
             {% for teacher in teachers %}
             <li>
                 Teacher id: {{ teacher.id|safe }}. {{ teacher.first_name|safe }} {{ teacher.last_name|safe }},
-                {{ teacher.age|safe }} years old
+                {{ teacher.age|safe }} years old, phone: {{teacher.phone|safe}}
             </li>
             {% endfor %}
         </ul>
