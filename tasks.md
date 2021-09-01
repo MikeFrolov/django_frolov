@@ -53,3 +53,18 @@ Lesson-7 Routing pages. reverse. Editing form in Django
         После редирект на список.
     3. Полный роутинг для teachers. Список, редактирование, добавление, delete.
     4. Вывести красиво teachers и groups в django admin
+
+Lesson-8 Middleware
+
+    1. Добавить поле phone в модель Student
+    2. Сделать raise ошибки если в поле phone ввели не цифры. (StudentCreateForm) django raise error in form
+    3. Student, Teacher поля first_name and last_name сделать str.capitalize(). Добавить в сигнал (pre_save).
+    4. Создать мидлварь LogMiddleware которая будет записывать параметры request.path, request.method, execution_time (diff),
+    если запрос был на админку (/admin/)
+    5. Какая разница между поверхностной и глубокой копией (например списков)
+
+    class Logger(models.Model):
+    method = models.CharField
+    path = ...
+    execution_time = ...
+    created = DateTimeField (when object was created) auto_now_add???
