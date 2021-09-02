@@ -7,10 +7,11 @@ from .models import Teacher
     first_name = forms.CharField(label='Teacher first name', required=True, max_length=200)
     last_name = forms.CharField(label='Teacher last name', required=True, max_length=200)
     age = forms.IntegerField(label='Teacher age')
+    phone = PhoneNumberField(label='Phone number')
 """
 
 
 class TeacherFormFormModel(forms.ModelForm):
     class Meta:
         model = Teacher
-        fields = ['first_name', 'last_name', 'age']
+        fields = ['first_name', 'last_name', 'age', 'phone']

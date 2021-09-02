@@ -42,11 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'phonenumber_field',
     'django.contrib.staticfiles',
     'students',
     'teachers',
     'group',
+    'general',
     'debug_toolbar',
+
 ]
 
 MIDDLEWARE = [
@@ -58,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'general.middleware.LogMiddleware',
 ]
 
 ROOT_URLCONF = 'django_frolov.urls'

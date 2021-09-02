@@ -30,7 +30,6 @@ Homework - 4:
  
 Homework - 5:
 
-
     1. use bash command "flake8" to check the design of the code in the all project
 
     2. use bash command "python3 manage.py generate_teachers n" to  generate n random teachers into the database,
@@ -46,14 +45,12 @@ Homework - 5:
 ---
 Homework - 6:
 
-
     1. use "127.0.0.1:8000/create_student_form/" address to create new student with use html form
     2. use "127.0.0.1:8000/create_teacher_form/" address to create new teacher with use html form
     3. use "127.0.0.1:8000/create_group_form/" address to create new group with use html form
 
 ---
 Homework - 7:
-
 
     1. use "127.0.0.1:8000/list_objects/" address to list all objects. (objects - name of the 
         required class (students, teachers ...))
@@ -66,7 +63,23 @@ Homework - 7:
         - added filtering by fields,
         - added search field for two main object fields, using (__startswith)
     
+---
+Homework - 8:
 
+    1. Use "127.0.0.1:8000/create-student-form/ address to create new student with phone field,
+            The phone number will not pass validation if:
+            - it does not conform with the E-164 standard;
+            - instead of numbers, you entered a letter or a sign other than ('', '-', '(', ')');
+            - the number does not start with '+';
+            - a country or city code that does not exist has been entered!
+    2. In the form of creating a student and a teacher, fill in the first and last name in lower case,
+        they will automatically be written to the base starting with a capital letter,
+        implemented in signals / pre-save (handlers.py)
+    3. Go to the address: http://127.0.0.1:8000/admin/general/logger/
+        to view the activity log in the admin panel of the project
+        implemented in .general/middleware.py
+    4. copy.copy()- creates a shallow copy of the mutable object, while copy.deepcopy() - a full copy of it
+    
 ---
 The minimum acceptable version of Python is 3.9
 

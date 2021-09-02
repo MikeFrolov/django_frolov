@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from faker import Faker
 
-from my_libs import count_validator
+from my_libs import count_validator, phone_generator
 
 from .forms import TeacherFormFormModel
 from .models import Teacher
@@ -29,7 +29,8 @@ def generate_teachers(request, teacher_number=100):
             fake = Faker()
             Teacher.objects.create(first_name=fake.first_name(),
                                    last_name=fake.last_name(),
-                                   age=fake.random_int(23, 85))
+                                   age=fake.random_int(23, 85),
+                                   phone=phone_generator.phone_generate())
 
         return HttpResponseRedirect(reverse('list-filtered-teachers'))
     else:
@@ -44,9 +45,7 @@ def create_teacher_form(request):
         # check form it's valid:
         if form.is_valid():
             Teacher.objects.create(**form.cleaned_data)
-        return HttpResponseRedirect(reverse('list-filtered-teachers'))
-
-    # if this is a GET request or (any other method) we'll create a blank form
+            return HttpResponseRedirect(reverse('list-filtered-teachers'))
     else:
         form = TeacherFormFormModel()
 
