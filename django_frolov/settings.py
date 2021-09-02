@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'students',
     'teachers',
     'group',
+    'general',
     'debug_toolbar',
 
 ]
@@ -60,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'general.middleware.LogMiddleware',
 ]
 
 ROOT_URLCONF = 'django_frolov.urls'
