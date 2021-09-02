@@ -1,6 +1,5 @@
-from time import time
-
 import re
+from time import time
 
 from .models import Logger
 
