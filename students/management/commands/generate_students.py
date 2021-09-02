@@ -2,6 +2,8 @@ from django.core.management.base import BaseCommand
 
 from faker import Faker
 
+from my_libs import phone_generator
+
 from students.models import Student
 
 
@@ -17,5 +19,6 @@ class Command(BaseCommand):
         for i in range(*number):
             Student.objects.create(first_name=fake.first_name(),
                                    last_name=fake.last_name(),
-                                   age=fake.random_int(16, 45))
+                                   age=fake.random_int(16, 45),
+                                   phone=phone_generator.phone_generate())
         self.stdout.write(self.style.SUCCESS(f'Successfully created {str(*number)} new students on the database'))
