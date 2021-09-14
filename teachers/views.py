@@ -22,6 +22,22 @@ def list_filtered_teachers(request):
         return render(request, 'list_filtered_teachers.html', {'teachers': list_teacher})
 
 
+def make_teacher():
+    """Generate student and added him in DataBase"""
+    fake = Faker()
+    student = Teacher.objects.create(first_name=(fake.first_name()),
+                                     last_name=fake.last_name(),
+                                     age=fake.random_int(33, 99),
+                                     phone=phone_generator.phone_generate())
+
+    return student
+
+
+def generate_teacher(request):
+    make_teacher()
+    return HttpResponseRedirect(reverse('list-filtered-teachers'))
+
+
 def generate_teachers(request, teacher_number=100):
     count = request.GET.get("count", "")  # get a count from url
     if count_validator.count_valid(count).isdigit():
@@ -29,7 +45,7 @@ def generate_teachers(request, teacher_number=100):
             fake = Faker()
             Teacher.objects.create(first_name=fake.first_name(),
                                    last_name=fake.last_name(),
-                                   age=fake.random_int(23, 85),
+                                   age=fake.random_int(23, 99),
                                    phone=phone_generator.phone_generate())
 
         return HttpResponseRedirect(reverse('list-filtered-teachers'))

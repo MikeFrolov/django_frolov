@@ -1,15 +1,80 @@
 {% load static %}
 <html lang="en">
+<!doctype html>
+<html lang="en">
     <head>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-            <title>Hillel Django Project</title>
+        <!-- Required meta tags -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <title>Hillel Django Project</title>
     </head>
     <body>
-        <h1 align="center"><a href="/home">Django Project by Michail Frolov</a></h1>
-        <hr align="center" width="90%" size="4" />
-        {% block content %}
-        {% endblock %}
-        {% block footer %}
-        {% endblock %}
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                <a class="navbar-brand" href="/">Django project by Michail Frolov</a>
+              </div>
+
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Students <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="/list_students/">List students</a></li>
+                              <li class="divider"></li>
+                              <li><a href="/generate-student/">Generate student</a></li>
+                              <li><a href="/generate-students/?count=">Generate students</a></li>
+                              <li class="divider"></li>
+                              <li><a href="/create_student_form">Create student form</a></li>
+                          </ul>
+                      </li>
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Teachers <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="/list_teachers/">List teachers</a></li>
+                              <li class="divider"></li>
+                              <li><a href="/generate-teacher/">Generate teacher</a></li>
+                              <li><a href="/generate-teachers/?count=">Generate teachers</a></li>
+                              <li class="divider"></li>
+                              <li><a href="/create_teacher_form">Create teacher form</a></li>
+                          </ul>
+                      </li>
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Groups <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="/list_groups/">List groups</a></li>
+                              <li class="divider"></li>
+                              <li><a href="/create_group_form/">Create group form</a></li>
+                          </ul>
+                      </li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                      <li><a href="/admin">Admin</a></li>
+                  </ul>
+              </div>
+            </div>
+        </nav>
+
+        <section>
+            {% block content %}
+            {% endblock %}
+        </section>
+        <footer>
+            {% block footer %}
+            {% endblock %}
+        </footer>
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
 </html>
