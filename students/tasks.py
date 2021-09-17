@@ -8,7 +8,7 @@ from .models import Student
 
 
 @shared_task
-def create_students(total):
+def generate_students_with_form(total):
     fake = Faker()
     result = []
 
