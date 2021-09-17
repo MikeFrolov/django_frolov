@@ -35,6 +35,7 @@
                               <li class="divider"></li>
                               <li><a href="/generate-student/">Generate student</a></li>
                               <li><a href="/generate-students/?count=">Generate students</a></li>
+                              <li><a href="/generate_students_form/">Generate students form</a> </li>
                               <li class="divider"></li>
                               <li><a href="/create_student_form">Create student form</a></li>
                           </ul>
@@ -65,7 +66,14 @@
               </div>
             </div>
         </nav>
-        <br><br>
+        <br><br><br>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
         <section>
             {% block content %}
             {% endblock %}
