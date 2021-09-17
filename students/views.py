@@ -89,7 +89,8 @@ def generate_students_form(request):
         if form.is_valid():
             total = form.cleaned_data.get('total')
             generate_students_with_form.delay(total)
-            messages.success(request, 'Generation of {} students was successful! Wait a moment and refresh this page.'.format(total))
+            messages.success(request, 'Generation of {} students was successful!'
+                                      'Wait a moment and refresh this page.'.format(total))
             return redirect('list-filtered-students')
     else:
         form = GenerateStudentForm()
