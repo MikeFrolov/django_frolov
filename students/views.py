@@ -1,13 +1,14 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse
+from django.contrib import messages
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
 
 from faker import Faker
 
 from my_libs import count_validator, phone_generator
 
-from .forms import StudentFormFormModel
+from .forms import GenerateStudentForm, StudentFormFormModel
 from .models import Student
+from .tasks import generate_students_with_form
 
 
 def list_filtered_students(request):
@@ -35,7 +36,7 @@ def make_student():
 
 def generate_student(request):
     make_student()
-    return HttpResponseRedirect(reverse('list-filtered-students'))
+    return redirect('list-filtered-students')
 
 
 def generate_students(request, student_number=100):
@@ -43,7 +44,7 @@ def generate_students(request, student_number=100):
     if count_validator.count_valid(count).isdigit():
         for i in range(int(count)):
             make_student()
-        return HttpResponseRedirect(reverse('list-filtered-students'))
+        return redirect('list-filtered-students')
     else:
         return HttpResponse(count_validator.count_valid(count))
 
@@ -56,7 +57,7 @@ def create_student_form(request):
         # check form it's valid:
         if form.is_valid():
             Student.objects.create(**form.cleaned_data)
-            return HttpResponseRedirect(reverse('list-filtered-students'))
+            return redirect('list-filtered-students')
     else:
         form = StudentFormFormModel()
 
@@ -68,7 +69,7 @@ def edit_student_form(request, student_id):
         form = StudentFormFormModel(request.POST)
         if form.is_valid():
             Student.objects.update_or_create(defaults=form.cleaned_data, id=student_id)
-            return HttpResponseRedirect(reverse('list-filtered-students'))
+            return redirect('list-filtered-students')
     else:
         student = Student.objects.filter(id=student_id).first()
         form = StudentFormFormModel(instance=student)
@@ -79,4 +80,18 @@ def edit_student_form(request, student_id):
 def delete_student(request, student_id):
     student = Student.objects.filter(id=student_id)
     student.delete()
-    return HttpResponseRedirect(reverse('list-filtered-students'))
+    return redirect('list-filtered-students')
+
+
+def generate_students_form(request):
+    if request.method == 'POST':
+        form = GenerateStudentForm(request.POST)
+        if form.is_valid():
+            total = form.cleaned_data.get('total')
+            generate_students_with_form.delay(total)
+            messages.success(request, 'Generation of {} students was successful! Wait a moment and refresh this page.'.format(total))
+            return redirect('list-filtered-students')
+    else:
+        form = GenerateStudentForm()
+
+    return render(request, 'student_generator.html', {'form': form})
