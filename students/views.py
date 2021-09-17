@@ -94,4 +94,4 @@ def generate_students_form(request):
     else:
         form = GenerateStudentForm()
 
-    return render(request, 'student_generator.html', {'form': form})
+    return render(request, 'generate_students_form.html', {'form': form})
