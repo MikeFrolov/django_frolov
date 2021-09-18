@@ -9,16 +9,15 @@ by Michail Frolov
 ---
 ### Use aplication with bash commands:
 
-1. $pip3 install -r requirements.txt
-2. $source venv/bin/activate
-2. $python3 manage.py migrate
-3. $python3 manage.py createsuperuser -> enter username -> enter mail -> enter password -> re-enter password ->enter 'y'
-4. $python3 manage.py runserver
+    1. $pip3 install -r requirements.txt
+    2. $source venv/bin/activate
+    2. $python3 manage.py migrate
+    3. $python3 manage.py createsuperuser -> enter username -> enter mail -> enter password ->
+     -> re-enter password ->enter 'y'
+    4. $python3 manage.py runserver
 
-*To stop the server, press "ctrl + c"
-
+    *To stop the server, press "ctrl + c"
 ---
-
 Homework - 4:
 
     1. use "127.0.0.1:8000/generate-student/" address to generate 1 random student into the database
@@ -27,7 +26,7 @@ Homework - 4:
     3. use "127.0.0.1./admin/" address to manually create groups, students and teachers in the database
     4. use "127.0.0.1:8000/get_groups/" address to list all groups from the database
     5. use "127.0.0.1:8000/get_teachers/" address to list all teachers from the database
- 
+---
 Homework - 5:
 
     1. use bash command "flake8" to check the design of the code in the all project
@@ -41,14 +40,12 @@ Homework - 5:
        by parameter. 
        Use & to combine 2 or more filtering parameters.
        * Example: "127.0.0.1:8000/get_teachers/?first_name=Vitalii&age=30"
-
 ---
 Homework - 6:
 
     1. use "127.0.0.1:8000/create_student_form/" address to create new student with use html form
     2. use "127.0.0.1:8000/create_teacher_form/" address to create new teacher with use html form
     3. use "127.0.0.1:8000/create_group_form/" address to create new group with use html form
-
 ---
 Homework - 7:
 
@@ -62,7 +59,6 @@ Homework - 7:
         - all objects are displayed as a table,
         - added filtering by fields,
         - added search field for two main object fields, using (__startswith)
-    
 ---
 Homework - 8:
 
@@ -79,10 +75,28 @@ Homework - 8:
         to view the activity log in the admin panel of the project
         implemented in .general/middleware.py
     4. copy.copy()- creates a shallow copy of the mutable object, while copy.deepcopy() - a full copy of it
+---
+Homework - 9:
     
+    1. Travis CI connected to the project
+        When sending a push to github, travis CI checks the project against the verification parameters specified
+        in the travis.yml file.
+    2. Configured RabbitMQ, Celery, Celery beat:
+        2.1 Use next bash comands in new terminal to start Rabbitmq server:
+            - cd /usr/local/Cellar/rabbitmq/3.9.5
+            - sbin/rabbitmq-server
+            If server is not work, use:
+                - sudo lsof -i :25672
+                - sudo kill <PID>(when PID - Port id)
+                - sbin/rabbitmq-server
+        2.2 Use next bash comand in new terminal to start celery:
+            - celery -A django_frolov worker -l INFO
+            If not celery is not work, delete db.sqlite3 file and do it again
+        2.3 Use next bash comand in new terminal to start celery beat:
+            - celery -A django_frolov beat -l INFO
+    3. 
 ---
-The minimum acceptable version of Python is 3.9
-
+    The minimum acceptable version of Python is 3.9
 ---
-
-(Read tasks in file 'Tasks.txt')
+    (Read tasks in file 'Tasks.txt')
+---
