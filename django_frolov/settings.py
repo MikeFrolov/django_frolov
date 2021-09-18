@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+from celery.schedules import crontab
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,15 +32,17 @@ ALLOWED_HOSTS = []
 
 # celery
 CELERY_BROKER_URL = 'pyamqp://guest@localhost//'
-
-# from celery.schedules import crontab
+CELERY_TIMEZONE = 'Europe/kiev'
 CELERY_BEAT_SCHEDULE = {
-    'beat': {
-        'task': 'students.tasks.beat',
-        'schedule': 10,
-        # 'schedule': crontab(minute='*/1'),
+    'del_logs': {
+        'task': 'general.tasks.delete_admin_logs',
+        'schedule': crontab(hour=12, minute=0)
     }
 }
+""" 'beat': {
+        'task': 'students.tasks.beat',
+        'schedule': 10,
+        }"""
 
 
 INTERNAL_IPS = [
@@ -130,13 +133,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-en'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 

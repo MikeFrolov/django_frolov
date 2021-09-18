@@ -84,9 +84,11 @@ Homework - 9:
     2. Configured RabbitMQ, Celery, Celery beat:
         2.1 Use next bash comands in new terminal to start Rabbitmq server:
             - cd /usr/local/Cellar/rabbitmq/3.9.5
+            - brew services stop rabbitmq
             - sbin/rabbitmq-server
             If server is not work, use:
                 - sudo lsof -i :25672
+                - enter sistem password
                 - sudo kill <PID>(when PID - Port id)
                 - sbin/rabbitmq-server
         2.2 Use next bash comand in new terminal to start celery:
@@ -94,7 +96,8 @@ Homework - 9:
             If not celery is not work, delete db.sqlite3 file and do it again
         2.3 Use next bash comand in new terminal to start celery beat:
             - celery -A django_frolov beat -l INFO
-    3. 
+    3.  Celery beat is configured to delete admin logs older than 7 days, task completion time: 12:00 every day
+            - Use the previous instruction to start the Task Scheduler!
 ---
     The minimum acceptable version of Python is 3.9
 ---
