@@ -77,8 +77,8 @@ INSTALLED_APPS = [
     'teachers',
     'group',
     'general',
+    'send_email',
     'debug_toolbar',
-    'send_email.apps.SendEmailConfig',
 
 ]
 
