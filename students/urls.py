@@ -19,8 +19,4 @@ urlpatterns = [
     path('create_student_form/', create_student_form, name='create-student-form'),
     path('edit_student_form/<int:student_id>', edit_student_form, name='edit-student-form'),
     path('delete_student/<int:student_id>', delete_student, name='delete-student'),
-
-
-
-
 ]
