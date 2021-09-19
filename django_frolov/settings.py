@@ -12,8 +12,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-
+from dotenv import load_dotenv
 from celery.schedules import crontab
+
+
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,7 +34,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# celery
+# Email
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ['GMAIL_EMAIL']
+EMAIL_HOST_PASSWORD = os.environ['GMAIL_PASSWORD']
+DEFAULT_FROM_EMAIL = 'Shatoon22'
+DEFAULT_TO_EMAIL = 'shatoon22@gmail.com'
+
+# Celery & celery beat
 CELERY_BROKER_URL = 'pyamqp://guest@localhost//'
 CELERY_TIMEZONE = 'Europe/kiev'
 CELERY_BEAT_SCHEDULE = {
@@ -65,6 +78,7 @@ INSTALLED_APPS = [
     'group',
     'general',
     'debug_toolbar',
+    'send_email.apps.SendEmailConfig',
 
 ]
 
@@ -146,10 +160,14 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
