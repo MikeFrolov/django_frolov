@@ -3,8 +3,8 @@
         List students
     {% endblock %}
     {% block content %}
-        <h2>List students</h2>
-        <p></p>
+        <h2 class="container "align="center">List students</h2>
+        <br><br>
         <ul>
             {% for student in students %}
                 <li>
@@ -18,7 +18,7 @@
     {% endblock %}
     {% block footer %}
             <br>
-            <p>Use "127.0.0.1:8000/list_students/?" addresses with: "id=int", "first_name=str", "last_name=str",
+            <p class="container">Use "127.0.0.1:8000/list_students/?" addresses with: "id=int", "first_name=str", "last_name=str",
                 "age=int" parameters, to list filtered students from database by parameter.</p>
-            <p>Use & to combine 2 or more filtering parameters.</p>
+            <p class="container">Use & to combine 2 or more filtering parameters.</p>
     {% endblock %}

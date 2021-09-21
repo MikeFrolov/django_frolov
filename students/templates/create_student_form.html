@@ -3,9 +3,9 @@
         Student creation form
     {% endblock %}
     {% block content %}
-        <h2>Student creation form</h2>
+        <h2 class="container "align="center">Student creation form</h2>
         <br>
-        <form action="/create_student_form/" method="post">
+        <form class="container" action="/create_student_form/" method="post">
             {% csrf_token%}
             <table>
                 {{ form.as_table }}
