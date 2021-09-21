@@ -96,8 +96,10 @@ Homework - 9:
             If not celery is not work, delete db.sqlite3 file and do it again
         2.3 Use next bash comand in new terminal to start celery beat:
             - celery -A django_frolov beat -l INFO
-    3.  Celery beat is configured to delete admin logs older than 7 days, task completion time: 12:00 every day
+    3. Celery beat is configured to delete admin logs older than 7 days, task completion time: 12:00 every day
             - Use the previous instruction to start the Task Scheduler!
+    4. Follow the link 'http://127.0.0.1:8000/contact_us/', fill out the form, click 'Save form':
+        - In the root directory create a .env file with EMAIL_HOST_PASSWORD = ********
 ---
     The minimum acceptable version of Python is 3.9
 ---

@@ -10,14 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import os
+from os import getenv, path
 from pathlib import Path
-from dotenv import load_dotenv
+
 from celery.schedules import crontab
+
+from dotenv import load_dotenv
 
 
 load_dotenv()
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,13 +37,14 @@ ALLOWED_HOSTS = []
 
 # Email
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ['GMAIL_EMAIL']
-EMAIL_HOST_PASSWORD = os.environ['GMAIL_PASSWORD']
-DEFAULT_FROM_EMAIL = 'Shatoon22'
-DEFAULT_TO_EMAIL = 'shatoon22@gmail.com'
+EMAIL_HOST_USER = 'moyshe.test@gmail.com'
+EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = 'moyshe.test@gmail.com'
+DEFAULT_TO_EMAIL = 'moyshedev@gmail.com'
 
 # Celery & celery beat
 CELERY_BROKER_URL = 'pyamqp://guest@localhost//'
@@ -99,7 +101,7 @@ ROOT_URLCONF = 'django_frolov.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [(os.path.join(BASE_DIR, 'django_frolov/templates')), ],
+        'DIRS': [(path.join(BASE_DIR, 'django_frolov/templates')), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
