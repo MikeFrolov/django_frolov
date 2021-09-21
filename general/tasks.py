@@ -11,5 +11,5 @@ from .models import Logger
 def delete_admin_logs():
     date_to_del = timezone.now() - datetime.timedelta(days=7)
     logs_to_del = Logger.objects.filter(created__lte=date_to_del, path__contains='admin')
-    print('All {} of logs older than the {} have been deleted!'.format(len(logs_to_del), date_to_del))
     logs_to_del.delete()
+    return 'All of admin logs older then {} deleted'.format(date_to_del)
