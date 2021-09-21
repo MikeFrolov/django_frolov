@@ -68,3 +68,16 @@ Lesson-8 Middleware
     path = ...
     execution_time = ...
     created = DateTimeField (when object was created) auto_now_add???
+
+Lesson-9 Celery and Travis CI
+
+    1. Настроить rabbitmq + celery + celerybeat
+        - https://docs.celeryproject.org/en/stable/getting-started/first-steps-with-celery.html
+        - https://simpleisbetterthancomplex.com/tutorial/2017/08/20/how-to-use-celery-with-django.html
+    2. Удалять все логи (модель Logger из предыдущей домашки) "старше" 7 дней, с периодикой раз в день. (created)
+    3. Создать форму ContactUS(forms.Form) (title, message, email_from).
+       На save формы необходимо отправить письмо на vitalik1996@gmail.com. 
+       Письмо должно уходить через celery task. Только пожалуйста, тестируйте на своей почте сначала)
+        - https://docs.djangoproject.com/en/3.2/topics/email/
+    4. Настроить для своего джанго репозитория Travis CI, и добавить файл конфига в приложении.
+        - https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github

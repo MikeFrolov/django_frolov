@@ -10,9 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import os
+from os import getenv, path
 from pathlib import Path
 
+from celery.schedules import crontab
+
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +34,31 @@ SECRET_KEY = 'django-insecure-dcrtrq+myxpbx#aq&s2_y!h5ggg(xi_l=pltt3_xfwfp+t@^^^
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+# Email
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'moyshe.test@gmail.com'
+EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = 'moyshe.test@gmail.com'
+DEFAULT_TO_EMAIL = 'moyshedev@gmail.com'
+
+# Celery & celery beat
+CELERY_BROKER_URL = 'pyamqp://guest@localhost//'
+CELERY_TIMEZONE = 'Europe/kiev'
+CELERY_BEAT_SCHEDULE = {
+    'del_logs': {
+        'task': 'general.tasks.delete_admin_logs',
+        'schedule': crontab(hour=12, minute=0)
+    }
+}
+""" 'beat': {
+        'task': 'students.tasks.beat',
+        'schedule': 10,
+        }"""
 
 
 INTERNAL_IPS = [
@@ -48,6 +79,7 @@ INSTALLED_APPS = [
     'teachers',
     'group',
     'general',
+    'contact_us',
     'debug_toolbar',
 
 ]
@@ -69,7 +101,7 @@ ROOT_URLCONF = 'django_frolov.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [(os.path.join(BASE_DIR, 'django_frolov/templates')), ],
+        'DIRS': [(path.join(BASE_DIR, 'django_frolov/templates')), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,22 +150,22 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-en'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
