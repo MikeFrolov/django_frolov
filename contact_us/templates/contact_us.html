@@ -3,13 +3,15 @@
         Contact us form
     {% endblock %}
     {% block content %}
-        <h2>Contact us form</h2>
+        <h2 class="container "align="center">Contact Us form</h2>
         <br>
-        <form action="/contact_us_form/" method="post">
-            {% csrf_token%}
-            <table>
-                {{ form.as_table }}
-            </table>
-            <input type="submit" value="Send email">
+        <form method="post">
+            <div class="container">
+                {% csrf_token%}
+                <table>
+                    {{ form.as_p }}
+                </table>
+                <input type="submit" value="Save form">
+            </div>
         </form>
     {% endblock %}
