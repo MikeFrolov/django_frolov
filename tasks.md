@@ -82,6 +82,7 @@ Lesson-9 Celery and Travis CI
     4. Настроить для своего джанго репозитория Travis CI, и добавить файл конфига в приложении.
         - https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github
 
+
 Lesson-10 Links and Parsers
 
     1. Add to the Group model foreign keys for the teacher (Teacher) and students (Student).
@@ -90,3 +91,4 @@ Lesson-10 Links and Parsers
     number of students (up to 10) is generated python manage.py generate_teachers
     4. Add a parser for the exchange rate, which will take the current USD and EUR exchange rates from monobank
     and the national bank once a day to the database.
+    
