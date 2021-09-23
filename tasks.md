@@ -81,3 +81,7 @@ Lesson-9 Celery and Travis CI
         - https://docs.djangoproject.com/en/3.2/topics/email/
     4. Настроить для своего джанго репозитория Travis CI, и добавить файл конфига в приложении.
         - https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github
+
+Lesson-10_Links-Parsers
+
+    1.
