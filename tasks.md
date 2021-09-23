@@ -81,3 +81,12 @@ Lesson-9 Celery and Travis CI
         - https://docs.djangoproject.com/en/3.2/topics/email/
     4. Настроить для своего джанго репозитория Travis CI, и добавить файл конфига в приложении.
         - https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github
+
+Lesson-10 Links and Parsers
+
+    1. Add to the Group model foreign keys for the teacher (Teacher) and students (Student).
+    2. Display the relevant information in tables and in the admin panel (html). (/group/list/)
+    3. Update the script for generating random teachers so that for each new teacher 1 group with a random
+    number of students (up to 10) is generated python manage.py generate_teachers
+    4. Add a parser for the exchange rate, which will take the current USD and EUR exchange rates from monobank
+    and the national bank once a day to the database.
