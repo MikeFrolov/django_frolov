@@ -9,8 +9,7 @@
             {% for group in groups %}
                 <li>
                     Group id: {{ group.id|safe }}; Group name: {{ group.group_name|safe }};
-                    Faculty name: {{ group.faculty_name|safe }};
-                    Group consists of {{ group.number_of_students|safe }} students.
+                    Discipline: {{ group.discipline|safe }}.
                     <a href="{% url 'edit-group-form' group.id %}">Edit</a>
                     <a href="{% url 'delete-group' group.id %}">Delete</a>
                 </li>
