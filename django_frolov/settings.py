@@ -77,7 +77,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'students',
     'teachers',
-    'group',
+    'groups',
     'general',
     'contact_us',
     'debug_toolbar',
