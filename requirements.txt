@@ -3,7 +3,7 @@ asgiref==3.4.1
 billiard==3.6.4.0
 celery==5.1.2
 cffi==1.14.6
-click==8.0.1
+click==7.1.2
 click-didyoumean==0.0.3
 click-plugins==1.1.1
 click-repl==0.2.0
