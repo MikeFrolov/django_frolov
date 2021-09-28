@@ -10,4 +10,4 @@ class Student(models.Model):
     phone = PhoneNumberField(null=False, blank=True, unique=True, default=None)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} {self.age} {self.phone}"
+        return f"{self.first_name} {self.last_name}"
