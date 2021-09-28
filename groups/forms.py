@@ -1,9 +1,6 @@
 from django import forms
-from django.core.exceptions import ValidationError
 
 from .models import Group
-from students.models import Student
-from teachers.models import Teacher
 
 """
 class GroupForm(forms.Form):

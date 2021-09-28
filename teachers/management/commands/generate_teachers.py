@@ -1,12 +1,14 @@
+import random
+
 from django.core.management.base import BaseCommand
 
 from faker import Faker
 
-import random
+from groups.views import Group
+
+from students.views import make_student
 
 from teachers.views import make_teacher
-from students.views import make_student
-from groups.views import Group
 
 
 class Command(BaseCommand):

@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     'groups',
     'general',
     'contact_us',
+    'currency',
     'debug_toolbar',
 
 ]
