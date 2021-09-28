@@ -1,6 +1,5 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
 
 from faker import Faker
 
@@ -35,7 +34,7 @@ def make_teacher():
 
 def generate_teacher(request):
     make_teacher()
-    return HttpResponseRedirect(reverse('list-filtered-teachers'))
+    return redirect('list-filtered-teachers')
 
 
 def generate_teachers(request, teacher_number=100):
@@ -48,7 +47,7 @@ def generate_teachers(request, teacher_number=100):
                                    age=fake.random_int(23, 99),
                                    phone=phone_generator.phone_generate())
 
-        return HttpResponseRedirect(reverse('list-filtered-teachers'))
+        return redirect('list-filtered-teachers')
     else:
         return HttpResponse(count_validator.count_valid(count))
 
@@ -61,7 +60,7 @@ def create_teacher_form(request):
         # check form it's valid:
         if form.is_valid():
             Teacher.objects.create(**form.cleaned_data)
-            return HttpResponseRedirect(reverse('list-filtered-teachers'))
+            return redirect('list-filtered-teachers')
     else:
         form = TeacherFormFormModel()
 
@@ -73,7 +72,7 @@ def edit_teacher_form(request, teacher_id):
         form = TeacherFormFormModel(request.POST)
         if form.is_valid():
             Teacher.objects.update_or_create(defaults=form.cleaned_data, id=teacher_id)
-            return HttpResponseRedirect(reverse('list-filtered-teachers'))
+            return redirect('list-filtered-teachers')
     else:
         teacher = Teacher.objects.filter(id=teacher_id).first()
         form = TeacherFormFormModel(instance=teacher)
@@ -84,4 +83,4 @@ def edit_teacher_form(request, teacher_id):
 def delete_teacher(request, teacher_id):
     teacher = Teacher.objects.filter(id=teacher_id)
     teacher.delete()
-    return HttpResponseRedirect(reverse('list-filtered-teachers'))
+    return redirect('list-filtered-teachers')
