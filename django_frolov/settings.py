@@ -53,13 +53,24 @@ CELERY_BEAT_SCHEDULE = {
     'del_logs': {
         'task': 'general.tasks.delete_admin_logs',
         'schedule': crontab(hour=12, minute=0)
-    }
-}
-""" 'beat': {
-        'task': 'students.tasks.beat',
-        'schedule': 10,
-        }"""
+    },
 
+    # 'currency_privat': {
+    #     'task': 'currency.tasks.get_currency_rates_privat',
+    #     'schedule': crontab(hour=10, minute=30)
+    # },
+
+    'currency_mono': {
+        'task': 'currency.tasks.get_currency_rates_mono',
+        'schedule': crontab(hour=10, minute=31)
+    },
+
+    'currency_nats': {
+        'task': 'currency.tasks.get_currency_rates_nats',
+        'schedule': crontab(hour=10, minute=32)
+
+    },
+}
 
 INTERNAL_IPS = [
     '127.0.0.1',

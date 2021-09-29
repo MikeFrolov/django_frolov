@@ -1,3 +1,10 @@
-# from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+# from django.shortcuts import redirect, render
+
+from .models import Exchange
+
+
+def list_exchange_rates(request):
+    exchange_list = Exchange.objects.all()
+    return HttpResponse(exchange_list)
