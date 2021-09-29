@@ -1,6 +1,6 @@
-from django.urls import path
-
 from currency.views import list_exchange_rates
+
+from django.urls import path
 
 
 urlpatterns = [

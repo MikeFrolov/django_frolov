@@ -16,7 +16,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('create_at', models.DateTimeField()),
-                ('currency', models.CharField(choices=[('USD', 'US Dollar'), ('EUR', 'Euro'), ('RUR', 'Katsabaks')], max_length=4)),
+                ('currency', models.CharField(choices=[('USD', 'US Dollar'), ('EUR', 'Euro'), ('RUR', 'Katsabaks')],
+                                              max_length=4)),
                 ('source', models.CharField(default='PrivatBank', max_length=20)),
                 ('buy_price', models.DecimalField(decimal_places=5, max_digits=19)),
                 ('sale_price', models.DecimalField(decimal_places=5, max_digits=19)),

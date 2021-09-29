@@ -3,4 +3,3 @@ CURRENCIES = [
     ('EUR', 'Euro'),
     ('RUR', 'Katsabaks'),
 ]
-

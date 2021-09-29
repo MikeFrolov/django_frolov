@@ -1,8 +1,9 @@
-import requests
 from celery import shared_task
 
+import requests
+
 from .models import Exchange
-from .choices import CURRENCIES
+# from .choices import CURRENCIES
 
 
 """@shared_task
@@ -49,7 +50,7 @@ def get_currency_rates_mono():
         )
         exchange.save()
 
-    return f'Exchange rates from MonoBank have been successfully recorded!'
+    return 'Exchange rates from MonoBank have been successfully recorded!'
 
 
 @shared_task
@@ -71,4 +72,4 @@ def get_currency_rates_nats():
         )
         exchange.save()
 
-    return f'Exchange rates from NationalBank have been successfully recorded!'
+    return 'Exchange rates from NationalBank have been successfully recorded!'
