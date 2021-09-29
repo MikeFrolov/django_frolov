@@ -101,6 +101,19 @@ Homework - 9:
     4. Follow the link 'http://127.0.0.1:8000/contact_us/', fill out the form, click 'Save form':
         - In the root directory create a .env file with EMAIL_HOST_PASSWORD = ********
 ---
+Homework - 10:
+
+    1. Added foreign keys to the Group model for the curator (Teacher) and students (Student).
+    2. Displayed groups with relationships to tables (admin / groups / group /) and (locall / list_groups /)
+    3. Updated the script for generating random teachers:
+        - 1 group with a random number of students (up to 10) is generated for each new teacher;
+        - One of these students is randomly selected by the headman;
+        - Use python manage.py generate_teachers n (where 'n' is the number of teachers);
+    4. Created a new "currency" app:
+        - Added 2 separate tasks for parsing the USD and EUR exchange rates from monobank and the national bank
+            to the database;
+        - Displayed the table of exchange rates from the database to the project page (use the link Exchange rates)
+---
     The minimum acceptable version of Python is 3.9
 ---
     (Read tasks in file 'Tasks.txt')

@@ -6,7 +6,7 @@ from teachers.models import Teacher
 
 
 class Group(models.Model):
-    group_name = models.CharField(max_length=40, unique=True)
+    group_name = models.CharField(max_length=40, unique=False)
     discipline = models.CharField(max_length=40, null=True, blank=True, default='Programming')
     curator = models.ForeignKey(Teacher, null=True, default=None, blank=True, on_delete=models.PROTECT)
     headman = models.ForeignKey(Student, null=True, default=None, blank=True, on_delete=models.CASCADE)
