@@ -35,21 +35,25 @@ def create_group_form(request):
 
 
 def edit_group_form(request, group_id):
-    # TODO: How to change students, curator and headman?
     if request.method == 'POST':
         form = GroupFormFormModel(request.POST)
-        if form.is_valid():
-            group = Group.objects.filter(id=group_id)
-            group.delete()
-            groups = Group.objects.create(
-                group_name=form.cleaned_data["group_name"],
-                discipline=form.cleaned_data["discipline"],
-                curator=form.cleaned_data["curator"],
-                headman=form.cleaned_data["headman"],
-            )
+        if form.is_valid():  # If form valid:
+            # To the variable group, assign the filtered group by ID from the database
+            group = Group.objects.filter(id=group_id).first()
 
+            group.students.clear()  # clean all the many-to-many relationships of the object field 'students'
+            group.save()  # Save all changes in object fields
+
+            # Add new links from the form.list to the object field 'students' one by one
             for student in form.cleaned_data['students']:
-                groups.students.add(student)
+                group.students.add(student)
+
+            group.group_name = form.cleaned_data["group_name"]  # Update object 'group_name' field
+            group.discipline = form.cleaned_data["discipline"]  # Update object 'discipline' field
+            group.curator = form.cleaned_data["curator"]  # Update object 'curator' field
+            group.headman = form.cleaned_data["headman"]  # Update object 'headman' field
+            group.save()  # Save all changes in object fields
+
             return redirect('list-groups')
     else:
         group = Group.objects.filter(id=group_id).first()
