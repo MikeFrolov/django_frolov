@@ -2,9 +2,8 @@
     {% block title %}
         Contact us form
     {% endblock %}
+    {% block page_title %}Contact Us form{% endblock %}
     {% block content %}
-        <h2 class="container "align="center">Contact Us form</h2>
-        <br>
         <form method="post">
             <div class="container">
                 {% csrf_token%}

@@ -2,14 +2,12 @@
 {% block title %}
     Edit group form
 {% endblock %}
+{% block page_title %}Group creation form{% endblock %}
 {% block content %}
-    <h2 class="container "align="center">Group creation form</h2>
-    <br>
-
     <form action="/create_group_form/" method="post">
         {% csrf_token%}
             <table>
-                {{form.as_p }}
+                {{form.as_table }}
             </table>
         <input type="submit" value="Submit">
     </form>
