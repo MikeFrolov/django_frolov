@@ -38,13 +38,15 @@ def edit_group_form(request, group_id):
     if request.method == 'POST':
         form = GroupFormFormModel(request.POST)
         if form.is_valid():  # If form valid:
-            group = Group.objects.filter(id=group_id).first()  # To the variable group, assign the filtered group by ID from the database
+            # To the variable group, assign the filtered group by ID from the database
+            group = Group.objects.filter(id=group_id).first()
 
             group.students.clear()  # clean all the many-to-many relationships of the object field 'students'
             group.save()  # Save all changes in object fields
 
+            # Add new links from the form.list to the object field 'students' one by one
             for student in form.cleaned_data['students']:
-                group.students.add(student)  # Add new links from the form.list to the object field 'students' one by one
+                group.students.add(student)
 
             group.group_name = form.cleaned_data["group_name"]  # Update object 'group_name' field
             group.discipline = form.cleaned_data["discipline"]  # Update object 'discipline' field
