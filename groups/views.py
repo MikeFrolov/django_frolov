@@ -39,7 +39,17 @@ def edit_group_form(request, group_id):
     if request.method == 'POST':
         form = GroupFormFormModel(request.POST)
         if form.is_valid():
-            Group.objects.update_or_create(defaults=form.cleaned_data, id=group_id)
+            group = Group.objects.filter(id=group_id)
+            group.delete()
+            groups = Group.objects.create(
+                group_name=form.cleaned_data["group_name"],
+                discipline=form.cleaned_data["discipline"],
+                curator=form.cleaned_data["curator"],
+                headman=form.cleaned_data["headman"],
+            )
+
+            for student in form.cleaned_data['students']:
+                groups.students.add(student)
             return redirect('list-groups')
     else:
         group = Group.objects.filter(id=group_id).first()
