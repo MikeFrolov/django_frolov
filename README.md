@@ -114,6 +114,16 @@ Homework - 10:
             to the database;
         - Displayed the table of exchange rates from the database to the project page (use the link Exchange rates)
 ---
+Homework - 11:
+
+    1. Updated bootstrap to the version 5.1.
+    2. Displayed currency/list_exchange_rates.html with bootstrap tables
+    3. Updated the Travis CI:
+        - Installed django_extensions, added python manage.py validate_templates in the .travis.yml file
+        - Added python manage.py checkin in the .travis.yml file
+        - Added python manage.py makemigrations --check --dry-run in the .travis.yml file
+        - Added pip check in the .travis.yml file
+---
     The minimum acceptable version of Python is 3.9
 ---
     (Read tasks in file 'Tasks.txt')
