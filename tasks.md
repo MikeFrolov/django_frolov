@@ -104,3 +104,17 @@ Lesson-11 Templates
         - pip check
 
 ---
+Lesson-11 Templates
+
+    1. Кастомные страницы для статусов ответа: 500, 404:
+        https://docs.djangoproject.com/en/2.2/topics/http/views/#customizing-error-views
+        https://docs.djangoproject.com/en/2.2/ref/views/#error-views
+    2. Перевести все вью функций во View классы:
+        Списки:
+        https://docs.djangoproject.com/en/3.2/ref/class-based-views/generic-display/#listview
+        Формы:
+        https://docs.djangoproject.com/en/3.2/ref/class-based-views/generic-editing/
+        Кастомные вью:
+        https://docs.djangoproject.com/en/3.2/ref/class-based-views/base/
+
+---
