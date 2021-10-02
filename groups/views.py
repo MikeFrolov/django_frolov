@@ -1,6 +1,4 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse
+from django.shortcuts import redirect, render
 
 
 from .forms import GroupFormFormModel
@@ -19,9 +17,17 @@ def create_group_form(request):
         form = GroupFormFormModel(request.POST)
         # check form it's valid:
         if form.is_valid():
-            Group.objects.create(**form.cleaned_data)
+            groups = Group.objects.create(
+                group_name=form.cleaned_data["group_name"],
+                discipline=form.cleaned_data["discipline"],
+                curator=form.cleaned_data["curator"],
+                headman=form.cleaned_data["headman"],
+            )
 
-            return HttpResponseRedirect(reverse('list-groups'))
+            for student in form.cleaned_data['students']:
+                groups.students.add(student)
+
+            return redirect('list-groups')
     else:
         form = GroupFormFormModel()
 
@@ -31,9 +37,24 @@ def create_group_form(request):
 def edit_group_form(request, group_id):
     if request.method == 'POST':
         form = GroupFormFormModel(request.POST)
-        if form.is_valid():
-            Group.objects.update_or_create(defaults=form.cleaned_data, id=group_id)
-            return HttpResponseRedirect(reverse('list-groups'))
+        if form.is_valid():  # If form valid:
+            # To the variable group, assign the filtered group by ID from the database
+            group = Group.objects.filter(id=group_id).first()
+
+            group.students.clear()  # clean all the many-to-many relationships of the object field 'students'
+            group.save()  # Save all changes in object fields
+
+            # Add new links from the form.list to the object field 'students' one by one
+            for student in form.cleaned_data['students']:
+                group.students.add(student)
+
+            group.group_name = form.cleaned_data["group_name"]  # Update object 'group_name' field
+            group.discipline = form.cleaned_data["discipline"]  # Update object 'discipline' field
+            group.curator = form.cleaned_data["curator"]  # Update object 'curator' field
+            group.headman = form.cleaned_data["headman"]  # Update object 'headman' field
+            group.save()  # Save all changes in object fields
+
+            return redirect('list-groups')
     else:
         group = Group.objects.filter(id=group_id).first()
         form = GroupFormFormModel(instance=group)
@@ -44,4 +65,4 @@ def edit_group_form(request, group_id):
 def delete_group(request, group_id):
     group = Group.objects.filter(id=group_id)
     group.delete()
-    return HttpResponseRedirect(reverse('list-groups'))
+    return redirect('list-groups')

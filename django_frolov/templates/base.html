@@ -1,6 +1,5 @@
 {% load static %}
 <html lang="en">
-<html lang="en">
 <!doctype html>
     <head>
         <!-- Required meta tags -->
@@ -32,6 +31,9 @@
                   </div>
 
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <ul class="nav navbar-nav navbar-right">
+                          <li><a href="/list_exchange_rates">Exchange rates</a></li>
+                      </ul>
                       <ul class="nav navbar-nav navbar-right">
                           <li><a href="/contact_us">Contact us</a></li>
                       </ul>
@@ -81,7 +83,9 @@
                 {% if messages %}
                     <ul class="messages">
                         {% for message in messages %}
-                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                {{ message }}
+                            </li>
                         {% endfor %}
                     </ul>
                 {% endif %}

@@ -10,4 +10,9 @@ class Teacher(models.Model):
     phone = PhoneNumberField(null=False, blank=True, unique=True, default=None)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} {self.age} {self.phone}"
+        return f"{self.first_name} {self.last_name}"
+
+    """@classmethod
+    def get_default_pk(cls):
+        object, created = cls.objects.get_or_create(name="No teachers")
+        return object.pk"""

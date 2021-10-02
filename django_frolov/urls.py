@@ -28,5 +28,6 @@ urlpatterns = [
     path('', include('groups.urls')),
     path('', include('teachers.urls')),
     path('', include('contact_us.urls')),
+    path('', include('currency.urls')),
     path('__debug__/', include(debug_toolbar.urls))
 ]

@@ -3,17 +3,44 @@
         List groups
     {% endblock %}
     {% block content %}
-        <h2>List groups</h2>
-        <p></p>
-        <ul>
+        <h2 class="container alert" align="center" >List groups</h2>
+        <div class="container">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="active">
+                    <th scope="col">id</th>
+                    <th scope="col">Group name</th>
+                    <th scope="col">Discipline</th>
+                    <th scope="col">Curator</th>
+                    <th scope="col">Headman</th>
+                    <th scope="col">Students in group</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
             {% for group in groups %}
-                <li>
-                    Group id: {{ group.id|safe }}; Group name: {{ group.group_name|safe }};
-                    Faculty name: {{ group.faculty_name|safe }};
-                    Group consists of {{ group.number_of_students|safe }} students.
-                    <a href="{% url 'edit-group-form' group.id %}">Edit</a>
-                    <a href="{% url 'delete-group' group.id %}">Delete</a>
-                </li>
+                <tr>
+                    <td>{{ group.id|safe  }}</td>
+                    <td>{{ group.group_name|safe }}</td>
+                    <td>{{ group.discipline|safe }}</td>
+                    <td>{{ group.curator|safe }}</td>
+                    <td>{{ group.headman|safe }}</td>
+                    <td>
+                        <ul>
+                            {% for student in group.students.all %}
+                                <li>{{ student.first_name }} {{ student.last_name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li><a href="{% url 'edit-group-form' group.id %}">Edit</a></li>
+                            <li><a href="{% url 'delete-group' group.id %}">Delete</a></li>
+                        </ul>
+                    </td>
+                </tr>
             {% endfor %}
-        </ul>
+            </tbody>
+        </table>
+        </div>
     {% endblock %}

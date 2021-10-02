@@ -11,7 +11,7 @@ from .views import (
 urlpatterns = [
     path('list_groups/', list_groups, name='list-groups'),
     path('create_group_form/', create_group_form, name='create-groups-form'),
-    path('edit_group_form/<int:group_id>', edit_group_form, name='edit-groups-form'),
-    path('delete_group/<int:group_id>', delete_group, name='delete-groups')
+    path('edit_group_form/<int:group_id>', edit_group_form, name='edit-group-form'),
+    path('delete_group/<int:group_id>', delete_group, name='delete-group')
 
 ]

@@ -4,7 +4,7 @@ from .models import Group
 
 
 @admin.register(Group)
-class GroutAdmin(admin.ModelAdmin):
-    list_display = ("id", "group_name", "faculty_name", "number_of_students")
-    list_filter = ("group_name", "faculty_name", "number_of_students")
-    search_fields = ("group_name__startswith", "faculty_name__startswith", )
+class GroupAdmin(admin.ModelAdmin):
+    list_display = ("id", "group_name", "discipline", "curator", "headman", "students_list")
+    list_filter = ("group_name", "discipline", "curator", "headman")
+    search_fields = ("group_name__startswith", "discipline__startswith")
