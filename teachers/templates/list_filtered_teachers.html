@@ -2,15 +2,35 @@
     {% block title %}
         List filtered teachers
     {% endblock %}
+    {% block page_title %}List filtered teachers{% endblock %}
     {% block content %}
-        <h2>List filtered teachers</h2>
-        <p></p>
-        <ul>
-            {% for teacher in teachers %}
-            <li>
-                Teacher id: {{ teacher.id|safe }}. {{ teacher.first_name|safe }} {{ teacher.last_name|safe }},
-                {{ teacher.age|safe }} years old, phone: {{teacher.phone|safe}}
-            </li>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr class="active">
+                    <th scope="col">id</th>
+                    <th scope="col">First name</th>
+                    <th scope="col">Last name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Phone number</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for teacher in teachers %}
+                <tr>
+                    <td>{{ teacher.id|safe  }}</td>
+                    <td>{{ teacher.first_name|safe }}</td>
+                    <td>{{ teacher.last_name|safe }}</td>
+                    <td>{{ teacher.age|safe }}</td>
+                    <td>{{ teacher.phone|safe }}</td>
+                    <td>
+                        <ul>
+                            <li><a href="{% url 'edit-teacher-form' teacher.id %}">Edit</a></li>
+                            <li><a href="{% url 'delete-teacher' teacher.id %}">Delete</a></li>
+                        </ul>
+                    </td>
+                </tr>
             {% endfor %}
-        </ul>
+            </tbody>
+        </table>
     {% endblock %}

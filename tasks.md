@@ -1,5 +1,6 @@
 ### This file contains all the conditions for homeworks
 
+---
 lesson-4 Django
 
 Создать Пул Реквест
@@ -17,7 +18,6 @@ lesson-4 Django
     2. Вывести всех учителей
 
 ---
-
 Lesson-5 Django queryset, flake8
 
 Результат: линк на пул реквест
@@ -33,7 +33,6 @@ Lesson-5 Django queryset, flake8
     3. Вывести список учителей с возможностью фильтрации по полям age, first_name, last_name.
 
 ---
-
 Lesson-6 Forms in Django
 
     1. Создать форму добавления Student
@@ -45,7 +44,6 @@ Lesson-6 Forms in Django
     https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
 
 ---
-
 Lesson-7 Routing pages. reverse. Editing form in Django
 
     1. Использовать везде reverse OR {% url %}. В каждом app должен быть свой модуль urls.py
@@ -54,6 +52,7 @@ Lesson-7 Routing pages. reverse. Editing form in Django
     3. Полный роутинг для teachers. Список, редактирование, добавление, delete.
     4. Вывести красиво teachers и groups в django admin
 
+---
 Lesson-8 Middleware
 
     1. Добавить поле phone в модель Student
@@ -69,6 +68,7 @@ Lesson-8 Middleware
     execution_time = ...
     created = DateTimeField (when object was created) auto_now_add???
 
+---
 Lesson-9 Celery and Travis CI
 
     1. Настроить rabbitmq + celery + celerybeat
@@ -82,7 +82,7 @@ Lesson-9 Celery and Travis CI
     4. Настроить для своего джанго репозитория Travis CI, и добавить файл конфига в приложении.
         - https://docs.travis-ci.com/user/tutorial/#to-get-started-with-travis-ci-using-github
 
-
+---
 Lesson-10 Links and Parsers
 
     1. Добавить в модель Group внешние ключи на куратора (Teacher) и студентов (Student).
@@ -91,3 +91,16 @@ Lesson-10 Links and Parsers
         группа со случайным количеством студентов (до 10) python manage.py generate_teachers
     4. Добавить парсер курс валют, который будет раз в день брать текущий курс USD и EUR из
         monobank и нацбанка.в базу.
+
+---
+Lesson-11 Templates
+
+    1. подключить https://getbootstrap.com/docs/4.5/getting-started/introduction/
+    2. Показать список курсов валют в таблице https://getbootstrap.com/docs/4.5/content/tables/
+    3. Добавить проверки в Travis CI
+        - python manage.py validate_templates
+        - python manage.py check
+        - python manage.py makemigrations --check --dry-run
+        - pip check
+
+---

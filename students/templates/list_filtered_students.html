@@ -2,15 +2,35 @@
     {% block title %}
         List filtered students
     {% endblock %}
+    {% block page_title %}List filtered students{% endblock %}
     {% block content %}
-        <h2 class="container "align="center">List filtered students</h2>
-        <p></p>
-        <ul>
-            {% for student in students %}
-            <li>
-                Student id: {{ student.id|safe }}. {{ student.first_name|safe }} {{ student.last_name|safe }},
-                {{ student.age|safe }} years old, phone: {{students.phone|safe}}
-            </li>
-            {% endfor %}
-        </ul>
+        <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr class="active">
+                        <th scope="col">id</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Phone number</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.id|safe  }}</td>
+                        <td>{{ student.first_name|safe }}</td>
+                        <td>{{ student.last_name|safe }}</td>
+                        <td>{{ student.age|safe }}</td>
+                        <td>{{ student.phone|safe }}</td>
+                        <td>
+                            <ul>
+                                <li><a href="{% url 'edit-student-form' student.id %}">Edit</a></li>
+                                <li><a href="{% url 'delete-student' student.id %}">Delete</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
     {% endblock %}

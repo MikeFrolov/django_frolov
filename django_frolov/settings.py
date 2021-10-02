@@ -93,6 +93,7 @@ INSTALLED_APPS = [
     'contact_us',
     'currency',
     'debug_toolbar',
+    'django_extensions',
 
 ]
 

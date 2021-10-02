@@ -2,32 +2,30 @@
     {% block title %}
         Exchange rates list
     {% endblock %}
+    {% block page_title %}Exchange rates list{% endblock %}
     {% block content %}
-        <h2 class="container alert" align="center" >Exchange rates list</h2>
-        <div class="container">
-        <table class="table table-bordered">
-            <thead>
-                <tr class="active">
-                    <th scope="col">id</th>
-                    <th scope="col">Create_at</th>
-                    <th scope="col">Source</th>
-                    <th scope="col">Currency</th>
-                    <th scope="col">Buy price</th>
-                    <th scope="col">Sale price</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for rate in exchanges_rates %}
-                <tr>
-                    <td>{{ rate.id|safe }}</td>
-                    <td>{{ rate.create_at|safe }}</td>
-                    <td>{{ rate.source|safe }}</td>
-                    <td>{{ rate.currency|safe }}</td>
-                    <td>{{ rate.buy_price|safe }}</td>
-                    <td>{{ rate.sale_price|safe }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        </div>
+            <table class="container table table-bordered border-black-50">
+                <thead class="table-dark">
+                    <tr class="active">
+                        <th scope="col">id</th>
+                        <th scope="col">Create_at</th>
+                        <th scope="col">Source</th>
+                        <th scope="col">Currency</th>
+                        <th scope="col">Buy price</th>
+                        <th scope="col">Sale price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for rate in exchanges_rates %}
+                    <tr>
+                        <td>{{ rate.id|safe }}</td>
+                        <td>{{ rate.create_at|safe }}</td>
+                        <td>{{ rate.source|safe }}</td>
+                        <td>{{ rate.currency|safe }}</td>
+                        <td>{{ rate.buy_price|safe }}</td>
+                        <td>{{ rate.sale_price|safe }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
     {% endblock %}
