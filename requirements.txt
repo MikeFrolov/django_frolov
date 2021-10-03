@@ -20,6 +20,7 @@ flake8==3.9.2
 flake8-builtins==1.5.3
 flake8-import-order==0.18.1
 flake8-print==4.0.0
+gunicorn==20.1.0
 idna==3.2
 isort==5.9.3
 kombu==5.1.0
@@ -28,6 +29,8 @@ phonenumbers==8.12.33
 phonenumberslite==8.12.33
 prompt-toolkit==3.0.20
 pycodestyle==2.7.0
+psycopg2==2.9.1
+psycopg2-binary==2.9.1
 pycparser==2.20
 pyflakes==2.3.1
 python-dateutil==2.8.2
