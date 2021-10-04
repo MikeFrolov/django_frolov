@@ -266,5 +266,4 @@ Lesson-17 Find the number of O(?) Operations for each function
         return num + calc_sum(num-1)
 
     print(calc_sum(num))
-
 ---
