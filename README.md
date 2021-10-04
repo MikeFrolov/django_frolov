@@ -124,6 +124,11 @@ Homework - 11:
         - Added python manage.py makemigrations --check --dry-run in the .travis.yml file
         - Added pip check in the .travis.yml file
 ---
+Homework - 12:
+
+    Answered all questions on all 7 tests
+
+---
     The minimum acceptable version of Python is 3.9
 ---
     (Read tasks in file 'Tasks.txt')
