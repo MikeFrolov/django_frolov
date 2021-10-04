@@ -10,13 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from os import getenv, path
+from os import environ, getenv, path
 from pathlib import Path
 
 from celery.schedules import crontab
 
 from dotenv import load_dotenv
 
+import dj_database_url
+
+# import socket
 
 load_dotenv()
 
@@ -28,12 +31,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-dcrtrq+myxpbx#aq&s2_y!h5ggg(xi_l=pltt3_xfwfp+t@^^^'
+# SECRET_KEY = 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag'
+SECRET_KEY = environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = bool(environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = []
+# if socket.gethostname().endswith(".local"): # True in your local computer
+#     DEBUG = True
+#     ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+# else:
+#     DEBUG = bool(environ.get('DJANGO_DEBUG', True))
+
+CSRF_COOKIE_SECURE = bool(environ.get('CSRF_COOKIE_SECURE', True))
+
+ALLOWED_HOSTS = ['*']
 
 # Email
 
@@ -100,6 +114,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -127,7 +142,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'django_frolov.wsgi.application'
+# WSGI_APPLICATION = 'django_frolov.wsgi.application'
 
 
 # Database
@@ -177,10 +192,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Heroku: Update database configuration from $DATABASE_URL.
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
