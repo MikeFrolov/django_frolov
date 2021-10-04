@@ -30,6 +30,7 @@ phonenumbers==8.12.33
 phonenumberslite==8.12.33
 prompt-toolkit==3.0.20
 psycopg2==2.9.1
+psycopg2-binary==2.9.1
 pycodestyle==2.7.0
 pycparser==2.20
 pyflakes==2.3.1
