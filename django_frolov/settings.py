@@ -47,7 +47,7 @@ DEBUG = bool(environ.get('DJANGO_DEBUG', True))
 
 CSRF_COOKIE_SECURE = bool(environ.get('CSRF_COOKIE_SECURE', True))
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://djangofrolov.herokuapp.com/', '127.0.0.1', 'localhost']
 
 # Email
 
