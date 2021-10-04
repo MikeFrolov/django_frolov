@@ -104,3 +104,166 @@ Lesson-11 Templates
         - pip check
 
 ---
+Lesson-12 Run online tests
+
+    1. Пройти все 7 тестов, сделать работу над ошибками:
+        https://www.tutorialsteacher.com/online-test/python-test
+
+    Не нужно перепроходить все тесты по несколько раз ради лучшей оценки, мне важно чтоб вы поняли где у вас есть
+        пробелы. Скинуть скрины результатов.
+
+---
+Lesson-13 Class-based views
+
+    1. Кастомные страницы для статусов ответа: 500, 404:
+        https://docs.djangoproject.com/en/2.2/topics/http/views/#customizing-error-views
+        https://docs.djangoproject.com/en/2.2/ref/views/#error-views
+    2. Перевести все вью функций во View классы:
+        Списки:
+            https://docs.djangoproject.com/en/3.2/ref/class-based-views/generic-display/#listview
+        Формы:
+            https://docs.djangoproject.com/en/3.2/ref/class-based-views/generic-editing/
+        Кастомные вью:
+            https://docs.djangoproject.com/en/3.2/ref/class-based-views/base/
+
+---
+Lesson-14 Cover the project with tests
+
+    1. Покрыть интеграционными тестами все апки. Например:
+        get /students/ -> assert students.count == 0
+        get /generate-students/100 -> assert students.count == 100
+        post /edit-student/1 -> assert students.count == 1 AND student.data ==
+        post /create-student/ -> assert students.count == 1
+        тест для правильного/неправильного телефона студента
+        тесты для мидлварей
+        и т.д.
+
+        И так далее для преподов, групп, и курсов валют.
+        Чтоб понять, какие еще файлы и строки не покрыты тестами, рекомендую использовать:
+        https://pytest-cov.readthedocs.io/en/latest/readme.html
+
+    2. добавить команду pytest -s в travis
+
+---
+Lesson-15 Heroku deploy
+
+    Задеплоить ваше приложенько на heroku:
+        https://developer.mozilla.org/ru/docs/Learn/Server-side/Django/Deployment
+
+    Если у вас Windows - вместо gunicorn используйте waitress (соответсвенно в Procfile будет другая команда
+        старта приложения):
+        https://docs.pylonsproject.org/projects/waitress/en/latest/runner.html#invocation
+
+    Не забудьте выставить DJANGO_SECRET_KEY!
+
+---
+Lesson-16 Registration
+
+    1. Добавить странички регистрации и логина
+    2. Применить джанго флоу по востановлению пароля 
+        (пример: https://www.ordinarycoders.com/blog/article/django-password-reset)
+    3. Создать страницу для смены пароля. 
+        Форма должна иметь 3 поля (current password, new password, confirm new password)
+    4. Ограничить создание, модификацию и удаление всех сущностей только зарегистрированным пользователям.
+
+---
+Lesson-17 Find the number of O(?) Operations for each function
+
+    1. 
+    num = 10
+    def deductOne(num):
+        num -= 1
+        return num
+
+    print(deductOne(num)
+
+    2.
+    testList = [1, 43, 31, 21, 6, 96, 48, 13, 25, 5]
+    def someSort(testList):
+        for i in range(len(testList)):
+            for j in range(i + 1, len(testList)):
+                if testList[j] < testList[i]:
+                    testList[j], testList[i] = testList[i], testList[j]
+                    print(testList)
+
+    print(someSort(testList))
+
+    3.
+    num = 10
+    def divide(num):
+        while num > 1:
+            num /= 2
+            print(num)
+        return num
+
+    print(divide(num))
+
+    4.
+    testList = [1, 43, 31, 21, 6, 96, 48, 13, 25, 5]
+    def wonderSort(testList):
+        if len(testList) < 2:
+            return testList
+        middle = int(len(testList) / 2)
+        left = wonderSort(testList[:middle])
+        right = wonderSort(testList[middle:])
+        result = []
+        print("Left: ", left)
+        print("Right: ", right)
+
+        while len(left) > 0 and len(right) > 0:
+            if left[0] <= right[0]:
+                result.append(left[0])
+                left.pop(0)
+            else:
+                result.append(right[0])
+                right.pop(0)
+            result += left
+            result += right
+            print("Result: ", result)
+        return result
+
+    print(wonderSort(testList))
+
+    5.
+    num = 10
+    def addOnesToTestList(num):
+        testList = []
+
+        for i in range(0, num):
+            testList.append(1)
+            print(testList)
+        return testList
+
+    print(addOnesToTestList(num))
+
+    6.
+    list = [2,3,4,5,6,7,8,9,10,11]
+    def search(num, lst):
+        print(f" The list is {lst} ")
+        pivot = len(lst)//2
+        print(f" Pivot element : {pivot}")
+
+        if num == lst[pivot]:
+            return "Element found"
+        elif num < lst[pivot]:
+            lst = lst[:pivot]
+            return search(num, lst)
+        elif num > lst[pivot]:
+            lst = lst[pivot:]
+            return search(num, lst)
+
+    print(search(11, list))
+
+    ---
+    7.
+    num = 10
+    def calc_sum(num):
+        if num <= 0:
+            return 0
+        else:
+            print(f" Calculating {num} + calc_sum({num-1})")
+
+        return num + calc_sum(num-1)
+
+    print(calc_sum(num))
+---
