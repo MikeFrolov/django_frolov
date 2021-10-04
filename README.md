@@ -127,6 +127,16 @@ Homework - 11:
 Homework - 12:
 
     Answered all questions on all 7 tests
+---
+Homework - 15:
+
+    Deployed the project on heroku:
+        Launching the application after refactoring:
+            Use bash commands:
+                'git push heroku master'
+                'heroku run python manage.py migrate'
+                'heroku run python manage.py createsuperuser'
+                'heroku open' - to open web site with working application
 
 ---
     The minimum acceptable version of Python is 3.9
