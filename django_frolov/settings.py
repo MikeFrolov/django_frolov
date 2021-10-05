@@ -93,12 +93,13 @@ INTERNAL_IPS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'django_celery_beat',
+    'django_celery_results',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'phonenumber_field',
     'django.contrib.staticfiles',
     'students',
     'teachers',
@@ -106,6 +107,7 @@ INSTALLED_APPS = [
     'general',
     'contact_us',
     'currency',
+    'phonenumber_field',
     'debug_toolbar',
     'django_extensions',
 
@@ -123,6 +125,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'general.middleware.LogMiddleware',
 ]
+
+CELERY_RESULT_BACKEND = "django-db"
 
 ROOT_URLCONF = 'django_frolov.urls'
 

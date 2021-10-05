@@ -15,7 +15,7 @@ def contact_us(request):
             text = form.cleaned_data.get('message')
             message = ('{}: {}'.format(email_from, text))
             email_from = form.cleaned_data.get('email_from')
-            email_to = ['moyshedev@gmail.com', 'vitalik1996@gmail.com']
+            email_to = ['moyshedev@gmail.com', 'shatoon2@gmail.com']
 
             contact_us_form.delay(title=title, message=message, email_from=email_from, email_to=email_to)
             # Added email to the database

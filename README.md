@@ -83,7 +83,7 @@ Homework - 9:
         in the travis.yml file.
     2. Configured RabbitMQ, Celery, Celery beat:
         2.1 Use next bash comands in new terminal to start Rabbitmq server:
-            - cd /usr/local/Cellar/rabbitmq/3.9.5
+            - cd /usr/local/Cellar/rabbitmq/3.9.7
             - brew services stop rabbitmq
             - sbin/rabbitmq-server
             If server is not work, use:
