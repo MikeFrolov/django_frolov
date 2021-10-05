@@ -134,6 +134,10 @@ Homework - 15:
         Launching the application after refactoring:
             Use bash commands:
                 'git push heroku master'
+            or 
+                go to https://dashboard.heroku.com/apps/djangofrolov/deploy/github -> Manual deploy ->
+                    -> Select the branch from which the working version of the application will be loaded ->
+                        -> Deploy Brabch
                 'heroku run python manage.py migrate'
                 'heroku run python manage.py createsuperuser'
                 'heroku open' - to open web site with working application
