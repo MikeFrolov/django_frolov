@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+    {% block title %}
+        Student creation form
+    {% endblock %}
+    {% block page_title %}Group delete form{% endblock %}
+    {% block content %}
+        <form class="container" method="post" align="center">
+            {% csrf_token %}
+            <table class="table table-striped ">
+                <p>Are you sure you want to delete "{{ object }}"?</p>
+            </table>
+            <input type="submit" value="Confirm">
+        </form>
+    {% endblock %}
