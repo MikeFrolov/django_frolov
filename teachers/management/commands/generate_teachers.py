@@ -6,7 +6,9 @@ from faker import Faker
 
 from groups.views import Group
 
-from students.views import make_student
+from my_libs.make_fake_person import make_person
+
+from students.models import Student
 
 from teachers.views import make_teacher
 
@@ -22,7 +24,7 @@ class Command(BaseCommand):
         fake = Faker()
         for i in range(*number):
             teacher = make_teacher()
-            students = [make_student() for _ in range(fake.random_int(1, 10))]
+            students = [make_person(Student, (18, 50)) for _ in range(fake.random_int(1, 10))]
             headman = random.choice(students)
             group = Group.objects.create(
                 group_name=f'group{(str(len(Group.objects.all()) + 1))}',

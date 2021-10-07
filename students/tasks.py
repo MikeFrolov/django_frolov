@@ -16,7 +16,7 @@ def generate_students_with_form(total):
         result.append(Student(
             first_name=(fake.first_name()),
             last_name=fake.last_name(),
-            age=fake.random_int(16, 45),
+            age=fake.random_int(16, 50),
             phone=phone_generator.phone_generate()
         ))
     Student.objects.bulk_create(result)
