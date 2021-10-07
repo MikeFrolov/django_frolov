@@ -75,11 +75,10 @@ class DeleteStudentView(DeleteView):
 
 class GenerateStudentsFormView(View):
     form_class = GenerateStudentForm
-    initial = {'key': 'value'}
     template_name = 'generate_students_form.html'
 
     def get(self, request, *args, **kwargs):
-        form = self.form_class(initial=self.initial)
+        form = self.form_class()
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
