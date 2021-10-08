@@ -55,6 +55,12 @@ class EditGroupFormView(View):
             # To the variable group, assign the filtered group by ID from the database
             group = Group.objects.filter(id=kwargs['group_id']).first()
 
+            group.group_name = form.cleaned_data["group_name"]  # Update object 'group_name' field
+            group.discipline = form.cleaned_data["discipline"]  # Update object 'discipline' field
+            group.curator = form.cleaned_data["curator"]  # Update object 'curator' field
+            group.headman = form.cleaned_data["headman"]  # Update object 'headman' field
+            group.save()  # Save all changes in object fields
+
             group.students.clear()  # clean all the many-to-many relationships of the object field 'students'
             group.save()  # Save all changes in object fields
 
@@ -62,13 +68,9 @@ class EditGroupFormView(View):
             for student in form.cleaned_data['students']:
                 group.students.add(student)
 
-            group.group_name = form.cleaned_data["group_name"]  # Update object 'group_name' field
-            group.discipline = form.cleaned_data["discipline"]  # Update object 'discipline' field
-            group.curator = form.cleaned_data["curator"]  # Update object 'curator' field
-            group.headman = form.cleaned_data["headman"]  # Update object 'headman' field
-            group.save()  # Save all changes in object fields
-
             return redirect('list-groups')
+
+        return render(request, self.template_name, {'form': form})
 
 
 class DeleteGroupView(DeleteView):
