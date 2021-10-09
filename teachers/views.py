@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.base import View
@@ -47,8 +46,9 @@ class GenerateTeachersView(View):
             messages.success(request, '{} random teachers created with success!'.format(count))
             return redirect(self.redirect_name)
         else:
-            # TODO: Rewrite error output to page from templates!
-            return HttpResponse(count_validator.count_valid(count))
+            error_message = count_validator.count_valid(count)
+            message = {'error_cod': '-- Url parameters error --', 'error_message': '{}'.format(str(error_message))}
+            return render(request, 'custom_error.html', message)
 
 
 class CreateTeacherFormView(CreateView):
