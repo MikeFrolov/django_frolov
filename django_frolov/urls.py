@@ -18,6 +18,8 @@ import debug_toolbar
 from django.contrib import admin
 from django.urls import include, path
 
+from .views import error_404, error_500
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,3 +31,6 @@ urlpatterns = [
     path('', include('currency.urls')),
     path('__debug__/', include(debug_toolbar.urls))
 ]
+
+handler404 = error_404
+handler500 = error_500
