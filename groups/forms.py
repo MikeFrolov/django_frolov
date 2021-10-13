@@ -13,8 +13,11 @@ class GroupForm(forms.Form):
 class GroupFormFormModel(forms.ModelForm):
     def clean_students(self):
         students = self.cleaned_data['students']
+        headman = self.cleaned_data['headman']
         if len(students) > 10:
-            raise forms.ValidationError('You can add maximum 10 students')
+            raise forms.ValidationError('You can add maximum 10 students!')
+        elif headman not in students:
+            raise forms.ValidationError('The headman must be in the group!')
         return students
 
     class Meta:
