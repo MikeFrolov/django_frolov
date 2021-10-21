@@ -77,7 +77,7 @@ class DeleteTeacherView(DeleteView):
 #     teachers_list = Teacher.objects.all()
 #
 #     if not filter_parameters:  # If no filtering parameters are entered
-#         return render(request, 'teachers/list_teachers.html', {'teachers': teachers_list})  # List all teachers from database
+#         return render(request, 'teachers/list_teachers.html', {'teachers': teachers_list})
 #     else:
 #         list_teacher = [obj for obj in Teacher.objects.filter(**filter_parameters)]
 #         return render(request, 'teachers/list_teachers.html', {'teachers': list_teacher})
