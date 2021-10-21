@@ -19,7 +19,7 @@ import dj_database_url
 
 from dotenv import load_dotenv
 
-# import socket
+import socket
 
 load_dotenv()
 
@@ -37,18 +37,18 @@ SECRET_KEY = environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
+# DEBUG = bool(environ.get('DJANGO_DEBUG', True))
 
-DEBUG = bool(environ.get('DJANGO_DEBUG', True))
-
-# if socket.gethostname().endswith(".local"): # True in your local computer
-#     DEBUG = True
-#     ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-# else:
-#     DEBUG = bool(environ.get('DJANGO_DEBUG', True))
+if socket.gethostname().endswith(".local"):  # True in your local computer
+    DEBUG = True
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+else:
+    DEBUG = bool(environ.get('DJANGO_DEBUG', True))
+    ALLOWED_HOSTS = ['djangofrolov.herokuapp.com']
 
 CSRF_COOKIE_SECURE = bool(environ.get('CSRF_COOKIE_SECURE', True))
 
-ALLOWED_HOSTS = ['djangofrolov.herokuapp.com', '127.0.0.1', 'localhost']
+# ALLOWED_HOSTS = ['djangofrolov.herokuapp.com', '127.0.0.1', 'localhost']
 
 # Email
 
@@ -130,7 +130,7 @@ ROOT_URLCONF = 'django_frolov.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [(path.join(BASE_DIR, 'django_frolov/templates')), ],
+        'DIRS': [(path.join(BASE_DIR, 'templates')), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

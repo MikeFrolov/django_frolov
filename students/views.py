@@ -14,7 +14,7 @@ age = (16, 50)
 
 
 class ListStudentsView(View):
-    template_name = 'list_students.html'
+    template_name = 'students/list_students.html'
 
     def get(self, request):
         filter_parameters = {p: v for p, v in request.GET.items()}
@@ -54,28 +54,28 @@ class GenerateStudentsView(View):
 
 
 class CreateStudentFormView(CreateView):
-    template_name = 'create_student_form.html'
+    template_name = 'students/create_student_form.html'
     model = Student
     fields = ['first_name', 'last_name', 'age', 'phone']
     success_url = reverse_lazy('list-students')
 
 
 class EditStudentFormView(UpdateView):
-    template_name = 'edit_student_form.html'
+    template_name = 'students/edit_student_form.html'
     model = Student
     fields = ['first_name', 'last_name', 'age', 'phone']
     success_url = reverse_lazy('list-students')
 
 
 class DeleteStudentView(DeleteView):
-    template_name = 'student_confirm_delete.html'
+    template_name = 'students/student_confirm_delete.html'
     model = Student
     success_url = reverse_lazy('list-students')
 
 
 class GenerateStudentsFormView(View):
     form_class = GenerateStudentForm
-    template_name = 'generate_students_form.html'
+    template_name = 'students/generate_students_form.html'
 
     def get(self, request, *args, **kwargs):
         form = self.form_class()
