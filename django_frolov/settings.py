@@ -105,6 +105,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'phonenumber_field',
     'django.contrib.staticfiles',
+    'accounts',
     'students',
     'teachers',
     'groups',
