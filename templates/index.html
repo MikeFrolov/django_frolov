@@ -7,6 +7,8 @@
         <div class="container" align="center">
             <br>
             <h1>-- Hi {{ user.username }}! --</h1>
+            <br>
+            <h3>* <a href="{% url 'logout' %}">Log Out</a></h3>
         </div>
     {% else %}
         <div class="container" align="center">
