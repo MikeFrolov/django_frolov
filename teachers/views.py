@@ -12,7 +12,7 @@ age = (23, 90)
 
 
 class ListTeachersView(View):
-    template_name = 'list_teachers.html'
+    template_name = 'teachers/list_teachers.html'
 
     def get(self, request):
         filter_parameters = {p: v for p, v in request.GET.items()}
@@ -52,14 +52,14 @@ class GenerateTeachersView(View):
 
 
 class CreateTeacherFormView(CreateView):
-    template_name = 'create_teacher_form.html'
+    template_name = 'teachers/create_teacher_form.html'
     model = Teacher
     fields = ['first_name', 'last_name', 'age', 'phone']
     success_url = reverse_lazy('list-teachers')
 
 
 class EditTeacherFormView(UpdateView):
-    template_name = 'edit_teacher_form.html'
+    template_name = 'teachers/edit_teacher_form.html'
     model = Teacher
     fields = ['first_name', 'last_name', 'age', 'phone']
     success_url = reverse_lazy('list-teachers')
@@ -67,7 +67,7 @@ class EditTeacherFormView(UpdateView):
 
 class DeleteTeacherView(DeleteView):
     model = Teacher
-    template_name = 'teacher_confirm_delete.html'
+    template_name = 'teachers/teacher_confirm_delete.html'
     success_url = reverse_lazy('list-teachers')
 
 
@@ -77,10 +77,10 @@ class DeleteTeacherView(DeleteView):
 #     teachers_list = Teacher.objects.all()
 #
 #     if not filter_parameters:  # If no filtering parameters are entered
-#         return render(request, 'list_teachers.html', {'teachers': teachers_list})  # List all teachers from database
+#         return render(request, 'teachers/list_teachers.html', {'teachers': teachers_list})  # List all teachers from database
 #     else:
 #         list_teacher = [obj for obj in Teacher.objects.filter(**filter_parameters)]
-#         return render(request, 'list_teachers.html', {'teachers': list_teacher})
+#         return render(request, 'teachers/list_teachers.html', {'teachers': list_teacher})
 
 
 # def make_teacher():
@@ -126,7 +126,7 @@ class DeleteTeacherView(DeleteView):
 #     else:
 #         form = TeacherFormFormModel()
 #
-#     return render(request, 'create_teacher_form.html', {'form': form})
+#     return render(request, 'teachers/create_teacher_form.html', {'form': form})
 
 
 # def edit_teacher_form(request, teacher_id):
@@ -139,7 +139,7 @@ class DeleteTeacherView(DeleteView):
 #         teacher = Teacher.objects.filter(id=teacher_id).first()
 #         form = TeacherFormFormModel(instance=teacher)
 #
-#     return render(request, 'edit_teacher_form.html', {'form': form, 'teacher_id': teacher_id})
+#     return render(request, 'teachers/edit_teacher_form.html', {'form': form, 'teacher_id': teacher_id})
 #
 #
 # def delete_teacher(request, teacher_id):

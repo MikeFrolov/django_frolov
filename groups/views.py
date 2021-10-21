@@ -10,11 +10,11 @@ from .models import Group
 
 class GroupsListView(ListView):
     model = Group
-    template_name = 'list_groups.html'
+    template_name = 'groups/list_groups.html'
 
 
 class CreateGroupFormView(View):
-    template_name = 'create_group_form.html'
+    template_name = 'groups/create_group_form.html'
     form_class = GroupFormFormModel
 
     def get(self, request, *args, **kwargs):
@@ -41,7 +41,7 @@ class CreateGroupFormView(View):
 
 
 class EditGroupFormView(View):
-    template_name = 'edit_group_form.html'
+    template_name = 'groups/edit_group_form.html'
     form_class = GroupFormFormModel
 
     def get(self, request, *args, **kwargs):
@@ -74,6 +74,6 @@ class EditGroupFormView(View):
 
 
 class DeleteGroupView(DeleteView):
-    template_name = 'group_confirm_delete.html'
+    template_name = 'groups/group_confirm_delete.html'
     model = Group
     success_url = reverse_lazy('list-groups')

@@ -30,4 +30,4 @@ def contact_us(request):
             messages.error(request, 'Please enter correct data in the form fields!')
     else:
         form = ContactUsForm()
-    return render(request, 'contact_us.html', {'form': form})
+    return render(request, 'contact_us/contact_us.html', {'form': form})
