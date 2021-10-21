@@ -20,12 +20,12 @@ class ListStudentsView(View):
         filter_parameters = {p: v for p, v in request.GET.items()}
 
         if not filter_parameters:  # If no filtering parameters are entered
-            students_list = Student.objects.all()
+            students_list = Student.objects.all().order_by('id')
             messages.info(request, 'Use the address with: ?id=int&first_name=str&last_name=str&age=int'
                                    ' parameters, to list filtered students from database by parameter.'
                           )
         else:
-            students_list = [obj for obj in Student.objects.filter(**filter_parameters)]
+            students_list = [obj for obj in Student.objects.filter(**filter_parameters).order_by('id')]
         return render(request, self.template_name, {'students': students_list})  # List students from database
 
 
