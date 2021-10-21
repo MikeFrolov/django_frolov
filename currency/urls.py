@@ -1,8 +1,8 @@
-from currency.views import list_exchange_rates
+from currency.views import ExchangeRatesListView
 
 from django.urls import path
 
 
 urlpatterns = [
-    path('list_exchange_rates/', list_exchange_rates, name='list-exchange-rates'),
+    path('list_exchange_rates/', ExchangeRatesListView.as_view(), name='list-exchange-rates'),
 ]

@@ -5,14 +5,14 @@ This program works if you need to check the input parameter for the fact that it
 
 def count_valid(count) -> str:
     if not count:
-        return '<p>Count not entered!</p>'
+        return 'Please enter a value for count in url!'
     if isinstance(count, str):
         try:
             int(count)
         except ValueError:
-            return '<p>Count must be an integer!</p>'
+            return 'Count must be an integer!'
         else:
-            if 1 > int(count) or int(count) > 100:
-                return '<p>Count must bу greater than 0 and no greater than 100</p>'
+            if 2 > int(count) or int(count) > 100:
+                return 'Count must bу greater than 1 and no greater than 100'
 
         return str(count)

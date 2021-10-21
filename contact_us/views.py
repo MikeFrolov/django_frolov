@@ -15,7 +15,7 @@ def contact_us(request):
             text = form.cleaned_data.get('message')
             message = ('{}: {}'.format(email_from, text))
             email_from = form.cleaned_data.get('email_from')
-            email_to = ['moyshedev@gmail.com', 'vitalik1996@gmail.com']
+            email_to = ['moyshedev@gmail.com', 'shatoon2@gmail.com', 'chicshinestore@gmail.com']
 
             contact_us_form.delay(title=title, message=message, email_from=email_from, email_to=email_to)
             # Added email to the database
@@ -30,4 +30,4 @@ def contact_us(request):
             messages.error(request, 'Please enter correct data in the form fields!')
     else:
         form = ContactUsForm()
-    return render(request, 'contact_us.html', {'form': form})
+    return render(request, 'contact_us/contact_us.html', {'form': form})

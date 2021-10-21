@@ -128,6 +128,13 @@ Homework - 12:
 
     Answered all questions on all 7 tests
 ---
+Homework - 13:
+
+    1. Created a 404 and 500 error handler:
+        - To check 404 errors, enter an address that does not exist in the project;
+        - Error 500 is triggered by: invalid data type in the request, unavailable functionality.
+    2. Rewritten all view functions of project for classes
+---
 Homework - 15:
 
     Deployed the project on heroku:
