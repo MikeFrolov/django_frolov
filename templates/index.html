@@ -1,3 +1,19 @@
 {% extends "base.html" %}
-    {% block title %}Django project by Michail Frolov{% endblock %}
-    {% block content %}{% endblock %}
+{% block title %}
+    Django project by Michail Frolov
+{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="container" align="center">
+            <br>
+            <h1>-- Hi {{ user.username }}! --</h1>
+        </div>
+    {% else %}
+        <div class="container" align="center">
+            <br>
+            <h1>-- You are not logged in --</h1>
+            <br>
+            <h3>* <a href="{% url 'login' %}">Log In</a></h3>
+        </div>
+    {% endif %}
+{% endblock %}
