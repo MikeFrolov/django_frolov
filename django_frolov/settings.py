@@ -48,6 +48,8 @@ else:
 
 CSRF_COOKIE_SECURE = bool(environ.get('CSRF_COOKIE_SECURE', True))
 
+LOGIN_REDIRECT_URL = '/'
+
 # ALLOWED_HOSTS = ['djangofrolov.herokuapp.com', '127.0.0.1', 'localhost']
 
 # Email
