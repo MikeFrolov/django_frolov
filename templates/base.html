@@ -15,6 +15,7 @@
         <!--link rel="stylesheet" href="{% static 'css/style.css' %}"-->
     </head>
     <body>
+        <!--<header class="p-3 bg-dark text-white">-->
         <header class="fixed-top">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container">
@@ -63,9 +64,23 @@
                                 <a class="nav-link active" aria-current="page" href="/contact_us">Contact us</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/list_exchange_rates">Exchange rates</a>
+                                <a class="nav-link active" aria-current="page" href="/list_exchange_rates">Exchange rates </a>
                             </li>
                         </ul>
+                    </div>
+                    <div class="text-end">
+                        {% if user.is_authenticated %}
+                            <button type="button" class="btn btn-outline-light me-2">
+                                  <a href="{% url 'logout' %}">Logout</a>
+                            </button>
+                        {% else %}
+                            <button type="button" class="btn btn-outline-light me-2">
+                              <a href="/accounts/login/">Login</a>
+                            </button>
+                            <button type="button" class="btn btn-warning">
+                                <a href="/accounts/signup/">SignUp</a>
+                            </button>
+                        {% endif %}
                     </div>
                 </div>
             </nav>
