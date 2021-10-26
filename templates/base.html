@@ -66,22 +66,28 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/list_exchange_rates">Exchange rates </a>
                             </li>
+                            {% if user.is_authenticated %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/create_group_form/">Change password</a></li>
+                                </ul>
+                            </li>
+                            {% else %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">LogIn | SignIn</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                    <li><a class="dropdown-item" href="{% url 'login' %}">Log In</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{% url 'signup' %}">Sign In</a></li>
+                                </ul>
+                            </li>
+                            {% endif %}
                         </ul>
                     </div>
-                    <div class="text-end">
-                        {% if user.is_authenticated %}
-                            <button type="button" class="btn btn-outline-light me-2">
-                                  <a href="{% url 'logout' %}">Logout</a>
-                            </button>
-                        {% else %}
-                            <button type="button" class="btn btn-outline-light me-2">
-                              <a href="/accounts/login/">Login</a>
-                            </button>
-                            <button type="button" class="btn btn-warning">
-                                <a href="/accounts/signup/">SignUp</a>
-                            </button>
-                        {% endif %}
-                    </div>
+
                 </div>
             </nav>
         </header>

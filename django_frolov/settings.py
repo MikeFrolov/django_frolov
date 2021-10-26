@@ -46,20 +46,21 @@ else:
     DEBUG = bool(environ.get('DJANGO_DEBUG', True))
     ALLOWED_HOSTS = ['djangofrolov.herokuapp.com']
 
+# ALLOWED_HOSTS = ['djangofrolov.herokuapp.com', '127.0.0.1', 'localhost']
+
 CSRF_COOKIE_SECURE = bool(environ.get('CSRF_COOKIE_SECURE', True))
 
 # Login settings
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# ALLOWED_HOSTS = ['djangofrolov.herokuapp.com', '127.0.0.1', 'localhost']
-
 # Email
 
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'moyshe.test@gmail.com'
 EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = 'moyshe.test@gmail.com'
@@ -114,6 +115,8 @@ INSTALLED_APPS = [
     'currency',
     'debug_toolbar',
     'django_extensions',
+    'crispy_forms',
+    'crispy_bootstrap5',
 
 ]
 

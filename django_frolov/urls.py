@@ -23,8 +23,8 @@ from .views import error_404, error_500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/', include('accounts.urls')),
+    path('', include('django.contrib.auth.urls')),
+    path('', include('accounts.urls')),
     path('', include('general.urls')),
     path('', include('students.urls')),
     path('', include('groups.urls')),
