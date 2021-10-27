@@ -23,7 +23,7 @@ class ListStudentsView(ListView):
         filter_parameters = {p: v for p, v in request.GET.items()}
 
         if not filter_parameters:  # If no filtering parameters are entered
-            students = Student.objects.all()
+            students = Student.objects.all().order_by('id')
             # messages.info(request, 'Use the address with: ?id=int&first_name=str&last_name=str&age=int'
             #                        ' parameters, to list filtered students from database by parameter.'
             #               )
@@ -35,7 +35,7 @@ class ListStudentsView(ListView):
         # FIXME: Crashes if trying to enter a filter that does not exist
         # TODO: Add filter name check
         else:
-            students = [obj for obj in Student.objects.filter(**filter_parameters)]
+            students = [obj for obj in Student.objects.filter(**filter_parameters).order_by('id')]
         return render(request, self.template_name, {'students': students})  # List students from database
         # return render(request, self.template_name, {'students': page_obj})
 

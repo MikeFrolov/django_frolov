@@ -20,9 +20,9 @@ class ListTeachersView(View):
 
         if not filter_parameters:  # If no filtering parameters are entered
             teachers_list = Teacher.objects.all().order_by('id')
-            messages.info(request, 'Use the address with: ?id=int&first_name=str&last_name=str&age=int'
-                                   ' parameters, to list filtered teachers from database by parameter.'
-                          )
+            # messages.info(request, 'Use the address with: ?id=int&first_name=str&last_name=str&age=int'
+            #                        ' parameters, to list filtered teachers from database by parameter.'
+            #               )
         else:
             teachers_list = [obj for obj in Teacher.objects.filter(**filter_parameters).order_by('id')]
         return render(request, self.template_name, {'teachers': teachers_list})  # List teachers from database
