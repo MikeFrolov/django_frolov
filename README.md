@@ -145,8 +145,8 @@ Homework - 15:
                 go to https://dashboard.heroku.com/apps/djangofrolov/deploy/github -> Manual deploy ->
                     -> Select the branch from which the working version of the application will be loaded ->
                         -> Deploy Brabch
-                'heroku run python manage.py migrate'
-                'heroku run python manage.py createsuperuser'
+                'heroku run python3 manage.py migrate'
+                'heroku run python3 manage.py createsuperuser'
                 'heroku open' - to open web site with working application
 ---
 Homework - 16:
@@ -157,6 +157,9 @@ Homework - 16:
     4. Creation, modification and deletion of all entities is restricted to registered users only:
         - Generation of students and teachers to unregistered users is also prohibited.
         - The link to the admin panel is hidden from the menu for unregistered users.
+    5.Cleaned Heroku database:
+        - https://qastack.ru/programming/4820549/how-to-empty-a-heroku-database#:~:text=%D0%9F%D0%B5%D1%80%D0%B5%D0%B9%D0%B4%D0%B8%D1%82%D0%B5%20%D0%BD%D0%B0%20dashboard.heroku.com,%D0%B7%D0%B0%D1%82%D0%B5%D0%BC%20%D1%81%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%D0%B5%20%D1%81%D0%B1%D1%80%D0%BE%D1%81%D0%B8%D1%82%D1%8C%20%D0%B1%D0%B0%D0%B7%D1%83%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85.
+        - used the 6th answer
 ---
     The minimum acceptable version of Python is 3.9
 ---
