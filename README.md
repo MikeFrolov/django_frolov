@@ -148,7 +148,15 @@ Homework - 15:
                 'heroku run python manage.py migrate'
                 'heroku run python manage.py createsuperuser'
                 'heroku open' - to open web site with working application
+---
+Homework - 16:
 
+    1. Added registration and login pages
+    2. Added 3 password reset pages
+    3. Added a page for changing the password.
+    4. Creation, modification and deletion of all entities is restricted to registered users only:
+        - Generation of students and teachers to unregistered users is also prohibited.
+        - The link to the admin panel is hidden from the menu for unregistered users.
 ---
     The minimum acceptable version of Python is 3.9
 ---
