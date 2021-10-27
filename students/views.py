@@ -1,6 +1,8 @@
 from django.contrib import messages
+# from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
+from django.views.generic import ListView
 from django.views.generic.base import View
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
@@ -13,20 +15,28 @@ from .tasks import generate_students_with_form
 age = (16, 50)
 
 
-class ListStudentsView(View):
+class ListStudentsView(ListView):
     template_name = 'students/list_students.html'
 
-    def get(self, request):
+    def get(self, request, **kwargs):
         filter_parameters = {p: v for p, v in request.GET.items()}
 
         if not filter_parameters:  # If no filtering parameters are entered
-            students_list = Student.objects.all().order_by('id')
-            messages.info(request, 'Use the address with: ?id=int&first_name=str&last_name=str&age=int'
-                                   ' parameters, to list filtered students from database by parameter.'
-                          )
+            students = Student.objects.all()
+            # messages.info(request, 'Use the address with: ?id=int&first_name=str&last_name=str&age=int'
+            #                        ' parameters, to list filtered students from database by parameter.'
+            #               )
+        # TODO: Add pagination
+        # FIXME: Crashes if using pagination, Conflicting requests '?page=1' and '?age = 1'
+            # paginator = Paginator(students, 10)
+            # page_number = request.GET.get('page')
+            # page_obj = paginator.get_page(page_number)
+        # FIXME: Crashes if trying to enter a filter that does not exist
+        # TODO: Add filter name check
         else:
-            students_list = [obj for obj in Student.objects.filter(**filter_parameters).order_by('id')]
-        return render(request, self.template_name, {'students': students_list})  # List students from database
+            students = [obj for obj in Student.objects.filter(**filter_parameters)]
+        return render(request, self.template_name, {'students': students})  # List students from database
+        # return render(request, self.template_name, {'students': page_obj})
 
 
 class GenerateStudentView(View):
@@ -41,7 +51,7 @@ class GenerateStudentsView(View):
     redirect_name = 'list-students'
 
     def get(self, request):
-        count = request.GET.get("count", "")  # get a count from url
+        count = request.GET.get("count", )  # get a count from url
         if count_validator.count_valid(count).isdigit():
             for _ in range(int(count)):
                 make_fake_person.make_person(Student, age)
@@ -84,7 +94,7 @@ class GenerateStudentsFormView(View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            total = form.cleaned_data.get('total')
+            total = form.cleaned_data.get('total', )
             generate_students_with_form.delay(total)
             messages.success(request, 'Generation of {} students was successful!'
                                       'Wait a moment and refresh this page.'.format(total))

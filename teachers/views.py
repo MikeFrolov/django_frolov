@@ -39,7 +39,7 @@ class GenerateTeachersView(View):
     redirect_name = 'list-teachers'
 
     def get(self, request):
-        count = request.GET.get("count", "")  # get a count from url
+        count = request.GET.get("count", )  # get a count from url
         if count_validator.count_valid(count).isdigit():
             for _ in range(int(count)):
                 make_fake_person.make_person(Teacher, age)

@@ -1,7 +1,7 @@
 from .forms import NewUserForm
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
@@ -32,8 +32,8 @@ def login_view(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
+            username = form.cleaned_data.get('username', )
+            password = form.cleaned_data.get('password', )
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
@@ -49,7 +49,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
-    return redirect("main:homepage")
+    return redirect('home')
 
 
 def password_reset_view(request):
@@ -85,9 +85,27 @@ def password_reset_view(request):
                     except BadHeaderError:
                         return HttpResponse('Invalid header found.')
                     return redirect("/password_reset/done/")
+                    # messages.success(request, 'A message with reset password instructions has been sent to your inbox.')
+                    # return redirect('home')
+            messages.error(request, 'An invalid email has been entered.')
     password_reset_form = PasswordResetForm()
     return render(
         request=request,
         template_name="registration/password_reset.html",
         context={"password_reset_form": password_reset_form}
     )
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully changed!')
+            return redirect('home')
+        else:
+            messages.error(request, 'Old password was entered incorrectly.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'registration/change_password.html', {'form': form})
