@@ -9,6 +9,9 @@
         <table class="table table-striped">
             {{ form.as_table }}
         </table>
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}" />
+        {% endif %}
         <button type="submit">Log In</button>
     </form>
     <br>

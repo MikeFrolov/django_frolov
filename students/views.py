@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
@@ -39,7 +40,7 @@ class ListStudentsView(ListView):
         # return render(request, self.template_name, {'students': page_obj})
 
 
-class GenerateStudentView(View):
+class GenerateStudentView(LoginRequiredMixin, View):
     redirect_name = 'list-students'
 
     def get(self, request):
@@ -47,7 +48,7 @@ class GenerateStudentView(View):
         return redirect(self.redirect_name)
 
 
-class GenerateStudentsView(View):
+class GenerateStudentsView(LoginRequiredMixin, View):
     redirect_name = 'list-students'
 
     def get(self, request):
@@ -63,27 +64,28 @@ class GenerateStudentsView(View):
             return render(request, 'custom_error.html', message)
 
 
-class CreateStudentFormView(CreateView):
+class CreateStudentFormView(LoginRequiredMixin, CreateView):
+
     template_name = 'students/create_student_form.html'
     model = Student
     fields = ['first_name', 'last_name', 'age', 'phone']
     success_url = reverse_lazy('list-students')
 
 
-class EditStudentFormView(UpdateView):
+class EditStudentFormView(LoginRequiredMixin, UpdateView):
     template_name = 'students/edit_student_form.html'
     model = Student
     fields = ['first_name', 'last_name', 'age', 'phone']
     success_url = reverse_lazy('list-students')
 
 
-class DeleteStudentView(DeleteView):
+class DeleteStudentView(LoginRequiredMixin, DeleteView):
     template_name = 'students/student_confirm_delete.html'
     model = Student
     success_url = reverse_lazy('list-students')
 
 
-class GenerateStudentsFormView(View):
+class GenerateStudentsFormView(LoginRequiredMixin, View):
     form_class = GenerateStudentForm
     template_name = 'students/generate_students_form.html'
 

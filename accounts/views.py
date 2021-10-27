@@ -1,18 +1,19 @@
-from .forms import NewUserForm
-from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
-from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
-from django.shortcuts import render, redirect
-from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse
-from django.contrib.auth.forms import PasswordResetForm
-from django.contrib.auth.models import User
-from django.template.loader import render_to_string
-from django.db.models.query_utils import Q
-from django.utils.http import urlsafe_base64_encode
-from django.contrib.auth.tokens import default_token_generator
-from django.utils.encoding import force_bytes
 import socket
+
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, PasswordResetForm
+from django.contrib.auth.models import User
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import BadHeaderError, send_mail
+from django.db.models.query_utils import Q
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+
+from .forms import NewUserForm
 
 
 def sign_up_view(request):
@@ -85,7 +86,7 @@ def password_reset_view(request):
                     except BadHeaderError:
                         return HttpResponse('Invalid header found.')
                     return redirect("/password_reset/done/")
-                    # messages.success(request, 'A message with reset password instructions has been sent to your inbox.')
+                    # messages.success(request, 'A mail with reset password instructions has been sent to your inbox.')
                     # return redirect('home')
             messages.error(request, 'An invalid email has been entered.')
     password_reset_form = PasswordResetForm()

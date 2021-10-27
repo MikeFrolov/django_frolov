@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.base import View
@@ -27,7 +28,7 @@ class ListTeachersView(View):
         return render(request, self.template_name, {'teachers': teachers_list})  # List teachers from database
 
 
-class GenerateTeacherView(View):
+class GenerateTeacherView(LoginRequiredMixin, View):
     redirect_name = 'list-teachers'
 
     def get(self, request):
@@ -35,7 +36,7 @@ class GenerateTeacherView(View):
         return redirect(self.redirect_name)
 
 
-class GenerateTeachersView(View):
+class GenerateTeachersView(LoginRequiredMixin, View):
     redirect_name = 'list-teachers'
 
     def get(self, request):
@@ -51,21 +52,21 @@ class GenerateTeachersView(View):
             return render(request, 'custom_error.html', message)
 
 
-class CreateTeacherFormView(CreateView):
+class CreateTeacherFormView(LoginRequiredMixin, CreateView):
     template_name = 'teachers/create_teacher_form.html'
     model = Teacher
     fields = ['first_name', 'last_name', 'age', 'phone']
     success_url = reverse_lazy('list-teachers')
 
 
-class EditTeacherFormView(UpdateView):
+class EditTeacherFormView(LoginRequiredMixin, UpdateView):
     template_name = 'teachers/edit_teacher_form.html'
     model = Teacher
     fields = ['first_name', 'last_name', 'age', 'phone']
     success_url = reverse_lazy('list-teachers')
 
 
-class DeleteTeacherView(DeleteView):
+class DeleteTeacherView(LoginRequiredMixin, DeleteView):
     model = Teacher
     template_name = 'teachers/teacher_confirm_delete.html'
     success_url = reverse_lazy('list-teachers')
