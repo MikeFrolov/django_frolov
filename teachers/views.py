@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.base import View
@@ -18,16 +19,16 @@ class ListTeachersView(View):
         filter_parameters = {p: v for p, v in request.GET.items()}
 
         if not filter_parameters:  # If no filtering parameters are entered
-            teachers_list = Teacher.objects.all()
-            messages.info(request, 'Use the address with: ?id=int&first_name=str&last_name=str&age=int'
-                                   ' parameters, to list filtered teachers from database by parameter.'
-                          )
+            teachers_list = Teacher.objects.all().order_by('id')
+            # messages.info(request, 'Use the address with: ?id=int&first_name=str&last_name=str&age=int'
+            #                        ' parameters, to list filtered teachers from database by parameter.'
+            #               )
         else:
-            teachers_list = [obj for obj in Teacher.objects.filter(**filter_parameters)]
+            teachers_list = [obj for obj in Teacher.objects.filter(**filter_parameters).order_by('id')]
         return render(request, self.template_name, {'teachers': teachers_list})  # List teachers from database
 
 
-class GenerateTeacherView(View):
+class GenerateTeacherView(LoginRequiredMixin, View):
     redirect_name = 'list-teachers'
 
     def get(self, request):
@@ -35,11 +36,11 @@ class GenerateTeacherView(View):
         return redirect(self.redirect_name)
 
 
-class GenerateTeachersView(View):
+class GenerateTeachersView(LoginRequiredMixin, View):
     redirect_name = 'list-teachers'
 
     def get(self, request):
-        count = request.GET.get("count", "")  # get a count from url
+        count = request.GET.get("count", )  # get a count from url
         if count_validator.count_valid(count).isdigit():
             for _ in range(int(count)):
                 make_fake_person.make_person(Teacher, age)
@@ -51,21 +52,21 @@ class GenerateTeachersView(View):
             return render(request, 'custom_error.html', message)
 
 
-class CreateTeacherFormView(CreateView):
+class CreateTeacherFormView(LoginRequiredMixin, CreateView):
     template_name = 'teachers/create_teacher_form.html'
     model = Teacher
     fields = ['first_name', 'last_name', 'age', 'phone']
     success_url = reverse_lazy('list-teachers')
 
 
-class EditTeacherFormView(UpdateView):
+class EditTeacherFormView(LoginRequiredMixin, UpdateView):
     template_name = 'teachers/edit_teacher_form.html'
     model = Teacher
     fields = ['first_name', 'last_name', 'age', 'phone']
     success_url = reverse_lazy('list-teachers')
 
 
-class DeleteTeacherView(DeleteView):
+class DeleteTeacherView(LoginRequiredMixin, DeleteView):
     model = Teacher
     template_name = 'teachers/teacher_confirm_delete.html'
     success_url = reverse_lazy('list-teachers')

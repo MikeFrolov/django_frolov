@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.base import View
@@ -13,7 +14,7 @@ class GroupsListView(ListView):
     template_name = 'groups/list_groups.html'
 
 
-class CreateGroupFormView(View):
+class CreateGroupFormView(LoginRequiredMixin, View):
     template_name = 'groups/create_group_form.html'
     form_class = GroupFormFormModel
 
@@ -40,7 +41,7 @@ class CreateGroupFormView(View):
         return render(request, self.template_name, {'form': form})
 
 
-class EditGroupFormView(View):
+class EditGroupFormView(LoginRequiredMixin, View):
     template_name = 'groups/edit_group_form.html'
     form_class = GroupFormFormModel
 
@@ -73,7 +74,7 @@ class EditGroupFormView(View):
         return render(request, self.template_name, {'form': form})
 
 
-class DeleteGroupView(DeleteView):
+class DeleteGroupView(LoginRequiredMixin, DeleteView):
     template_name = 'groups/group_confirm_delete.html'
     model = Group
     success_url = reverse_lazy('list-groups')
