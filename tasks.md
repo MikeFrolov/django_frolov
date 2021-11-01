@@ -267,3 +267,10 @@ Lesson-17 Find the number of O(?) Operations for each function
 
     print(calc_sum(num))
 ---
+Lesson-18 Docker
+
+    Обернуть ваше джанго приложение в докер image, залить ваш имэдж на docker hub, и прислать мне на него ссылку.
+    За основу (FROM) взять https://hub.docker.com/_/python
+
+    Перед этим ознакомится с туториалом (первые 5 частей) https://docs.docker.com/get-started/
+---
