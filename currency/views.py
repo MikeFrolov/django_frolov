@@ -10,6 +10,6 @@ class ExchangeRatesListView(ListView):
     context_object_name = 'exchanges_rates'
 
 # def list_exchange_rates(request):
-#     exchange_rates_list = Exchange.objects.all()
+#     exchange_rates_list = Exchange.objects.all().order_by('id')
 #     content = 'exchanges_rates'
 #     return render(request, 'list_exchange_rates.html', {'exchanges_rates': exchange_rates_list})

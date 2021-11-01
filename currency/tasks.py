@@ -36,17 +36,17 @@ def get_currency_rates_mono():
     currency_codes = {840: "USD", 978: "EUR"}
 
     for rate_mono in exchange_result_mono:
-        currency_code = rate_mono.get('currencyCodeA')
+        currency_code = rate_mono.get('currencyCodeA', )
 
-        if currency_code not in currency_codes.keys() or rate_mono.get('currencyCodeB') in currency_codes.keys():
+        if currency_code not in currency_codes.keys() or rate_mono.get('currencyCodeB', ) in currency_codes.keys():
             continue
 
         currency = currency_codes[currency_code]
         exchange = Exchange(
             source='MonoBank',
             currency=currency,
-            buy_price=rate_mono.get('rateBuy'),
-            sale_price=rate_mono.get('rateSell')
+            buy_price=rate_mono.get('rateBuy', ),
+            sale_price=rate_mono.get('rateSell', )
         )
         exchange.save()
 
@@ -61,14 +61,14 @@ def get_currency_rates_nats():
     currency_codes = (840, 978)
     for rate_nats in exchange_result_nats:
 
-        if rate_nats.get('r030') not in currency_codes:
+        if rate_nats.get('r030', ) not in currency_codes:
             continue
 
         exchange = Exchange(
             source='NationalBank',
-            currency=rate_nats.get('cc', 'USD'),
-            buy_price=rate_nats.get('rate'),
-            sale_price=rate_nats.get('rate')
+            currency=rate_nats.get('cc', ),
+            buy_price=rate_nats.get('rate', ),
+            sale_price=rate_nats.get('rate', )
         )
         exchange.save()
 

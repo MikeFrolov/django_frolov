@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import socket
 from os import environ, getenv, path
 from pathlib import Path
 
@@ -19,7 +20,6 @@ import dj_database_url
 
 from dotenv import load_dotenv
 
-import socket
 
 load_dotenv()
 
@@ -46,16 +46,22 @@ else:
     DEBUG = bool(environ.get('DJANGO_DEBUG', True))
     ALLOWED_HOSTS = ['djangofrolov.herokuapp.com']
 
+# ALLOWED_HOSTS = ['djangofrolov.herokuapp.com', '127.0.0.1', 'localhost']
+
 CSRF_COOKIE_SECURE = bool(environ.get('CSRF_COOKIE_SECURE', True))
 
-# ALLOWED_HOSTS = ['djangofrolov.herokuapp.com', '127.0.0.1', 'localhost']
+# Login settings
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Email
 
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'moyshe.test@gmail.com'
 EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = 'moyshe.test@gmail.com'
@@ -101,6 +107,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'phonenumber_field',
     'django.contrib.staticfiles',
+    'accounts',
     'students',
     'teachers',
     'groups',
@@ -109,6 +116,8 @@ INSTALLED_APPS = [
     'currency',
     'debug_toolbar',
     'django_extensions',
+    'crispy_forms',
+    'crispy_bootstrap5',
 
 ]
 

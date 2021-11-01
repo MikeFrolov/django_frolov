@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}
+    Sign up form
+{% endblock %}
+{% block page_title %}Sign up form{% endblock %}
+{% block content %}
+    {% load crispy_forms_tags %}
+
+    <!--Register-->
+        <form class="container" method="post">
+            {% csrf_token %}
+            <table class="table table-striped">
+            {{ register_form.as_table }}
+            </table>
+            <button class="btn btn-primary" type="submit">Register</button>
+        </form>
+        <p class="text-center">If you already have an account, <a href="{% url 'login' %}">login</a> instead.</p>
+{% endblock %}

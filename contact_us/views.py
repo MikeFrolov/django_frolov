@@ -10,11 +10,11 @@ def contact_us(request):
     if request.method == 'POST':
         form = ContactUsForm(request.POST)
         if form.is_valid():
-            title = form.cleaned_data.get('title')
-            email_from = form.cleaned_data.get('email_from')
-            text = form.cleaned_data.get('message')
+            title = form.cleaned_data.get('title', )
+            email_from = form.cleaned_data.get('email_from', )
+            text = form.cleaned_data.get('message', )
             message = ('{}: {}'.format(email_from, text))
-            email_from = form.cleaned_data.get('email_from')
+            email_from = form.cleaned_data.get('email_from', )
             email_to = ['moyshedev@gmail.com', 'shatoon2@gmail.com', 'chicshinestore@gmail.com']
 
             contact_us_form.delay(title=title, message=message, email_from=email_from, email_to=email_to)
