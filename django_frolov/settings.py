@@ -36,19 +36,20 @@ SECRET_KEY = environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 # DEBUG = True
-# DEBUG = bool(environ.get('DJANGO_DEBUG', True))
+# ALLOWED_HOSTS = ['*']
 
 if socket.gethostname().endswith(".local"):  # True in your local computer
     DEBUG = True
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-else:
-    DEBUG = bool(environ.get('DJANGO_DEBUG', True))
+    ALLOWED_HOSTS = ['*']
+    CSRF_COOKIE_SECURE = bool(environ.get('CSRF_COOKIE_SECURE', True))
+elif socket.gethostname().endswith(".herokuapp.com"):
     ALLOWED_HOSTS = ['djangofrolov.herokuapp.com']
+    CSRF_COOKIE_SECURE = bool(environ.get('CSRF_COOKIE_SECURE', True))
+else:
+    ALLOWED_HOSTS = ['*']
 
-# ALLOWED_HOSTS = ['djangofrolov.herokuapp.com', '127.0.0.1', 'localhost']
-
-CSRF_COOKIE_SECURE = bool(environ.get('CSRF_COOKIE_SECURE', True))
 
 # Login settings
 LOGIN_URL = '/login/'
@@ -132,6 +133,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'general.middleware.LogMiddleware',
+
 ]
 
 ROOT_URLCONF = 'django_frolov.urls'
@@ -161,7 +163,7 @@ TEMPLATES = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db/db.sqlite3',
     }
 }
 
