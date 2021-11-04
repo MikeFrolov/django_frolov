@@ -9,12 +9,16 @@ by Michail Frolov
 ---
 ### Use aplication with bash commands:
 
-    1. $source venv/bin/activate
-    2. $pip3 install -r requirements.txt
-    2. $python3 manage.py migrate
-    3. $python3 manage.py createsuperuser -> enter username -> enter mail -> enter password ->
-     -> re-enter password ->enter 'y'
-    4. $python3 manage.py runserver
+    1. $python3 -m venv venv
+    2. $source venv/bin/activate
+    3. $pip3 install --upgrade pip
+    4. $pip3 install -r requirements.txt
+    5. $mkdir db
+    6. $python3 manage.py migrate
+    7. $python3 manage.py createsuperuser -u jhjk -p kgghj
+        or $python3 manage.py createsuperuser -> enter username -> enter mail -> enter password -> re-enter password
+        -> enter 'y'
+    8. $python3 manage.py runserver
 
     *To stop the server, press "ctrl + c"
 ---
@@ -135,7 +139,7 @@ Homework - 13:
         - Error 500 is triggered by: invalid data type in the request, unavailable functionality.
     2. Rewritten all view functions of project for classes
 ---
-Homework - 15:
+Homework - 15_Heroku deploy:
 
     Deployed the project on heroku:
         Launching the application after refactoring:
@@ -149,7 +153,7 @@ Homework - 15:
                 'heroku run python3 manage.py createsuperuser'
                 'heroku open' - to open web site with working application
 ---
-Homework - 16:
+Homework - 16_Registration:
 
     1. Added registration and login pages
     2. Added 3 password reset pages
@@ -160,6 +164,33 @@ Homework - 16:
     5.Cleaned Heroku database:
         - https://qastack.ru/programming/4820549/how-to-empty-a-heroku-database#:~:text=%D0%9F%D0%B5%D1%80%D0%B5%D0%B9%D0%B4%D0%B8%D1%82%D0%B5%20%D0%BD%D0%B0%20dashboard.heroku.com,%D0%B7%D0%B0%D1%82%D0%B5%D0%BC%20%D1%81%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%D0%B5%20%D1%81%D0%B1%D1%80%D0%BE%D1%81%D0%B8%D1%82%D1%8C%20%D0%B1%D0%B0%D0%B7%D1%83%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85.
         - used the 6th answer
+---
+Homework - 17_O(n):
+
+---
+Homework - 18_Docker:
+
+    1. Created Dockerfile file
+    2. Created .dockerignore file
+    3. Created docker image "django-name"
+        - command to create: docker build -t django_frolov .
+    4. Run the application using 2 bash commands:
+        - docker run -it --rm -p 8000:8000 -v db-vol:/app/db django_frolov createsuperuser
+            where:
+                '--rm' removes the container after exiting the program;
+                '-v db-vol:/app/db' allocation of virtual memory for storing the application database
+        - docker run -it --rm -p 8000:8000 -v db-vol:/app/db django_frolov runserver 0.0.0.0:8000
+    5. To send an image to hub.docker.com:
+        - Sign in to Docker Hub
+        - Create public repository(django_frolov)
+        - use the bush commands:
+            - docker login -u moyshedev -> enter the password
+            - docker tag django_frolov moyshedev/django_frolov
+            - docker push moyshedev/django_frolov
+    
+    https://hub.docker.com/repository/docker/moyshedev/django_frolov
+    https://djangofrolov.herokuapp.com/
+    git@github.com:MoYsHeDev/django_frolov.git
 ---
     The minimum acceptable version of Python is 3.9
 ---
